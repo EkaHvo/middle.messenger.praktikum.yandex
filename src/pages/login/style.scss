@@ -1,0 +1,17 @@
+@use 'variables';
+@import url('/src/_styles.scss');
+@import url('/src/_formstyle.scss');
+@import url('/src/_fonts.scss');
+
+.login {
+  width: 100%;
+  height: 100vh;
+  @extend %flex-center;
+  &__button {
+    width: 100%;
+    margin-top: 160px;
+  }
+  .main__form-wrap {
+    height: 450px;
+  }
+}
