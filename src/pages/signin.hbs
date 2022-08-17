@@ -1,0 +1,20 @@
+<div class="signin">
+    <div class="main__form-wrap">
+        <div class="main__title">Регистрация</div>
+        <form class="main__form">
+            {{#each signinInputsObj}}
+                {{> inputItem 
+                    type=this.type
+                    id=this.id 
+                    name=this.name 
+                    label=this.label 
+                    errorText=this.errorText
+                }}
+            {{/each}}
+            <div class="buttons-wrap">
+                <button class="button main__form-button">Зарегистрироваться</button>
+                <a href="#" class="main__form-link main-link">Войти</a>
+            </div>
+        </form>
+    </div>
+</div>

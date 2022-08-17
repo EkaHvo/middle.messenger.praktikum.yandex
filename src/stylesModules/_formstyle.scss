@@ -1,0 +1,92 @@
+@use 'variables';
+
+.main {
+  &-link {
+    display: block;
+    width: 100%;
+    font-family: 'InterMedium', serif;
+    text-decoration: none;
+    font-size: 11px;
+    line-height: 11px;
+    text-align: center;
+    color: #3369F3;
+  }
+  &__form-wrap {
+    width: 340px;
+    box-sizing: border-box;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
+    border-radius: 12px;
+    padding: 50px 30px 30px;
+  }
+  &__title {
+    font-family: 'InterMedium', serif;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+  }
+  &__form {
+    padding-top: 24px;
+    position: relative;
+    margin: 0;
+    box-sizing: border-box;
+    height: 100%;
+    & > div {
+      position: relative;
+    }
+    .button {
+      width: 100%;
+      margin-top: 160px;
+    }
+    .buttons-wrap {
+      position: absolute;
+      bottom: 30px;
+      width: 100%;
+    }
+    .error {
+      font-family: 'InterRegular', serif;
+      display: none;
+      font-size: 8px;
+      line-height: 8px;
+      margin-top: 7px;
+      color: #FF2F2F;
+    }
+    .label {
+      position: absolute;
+      z-index: 1;
+      top: 10px;
+      font-size: 13px;
+      line-height: 13px;
+      display: block;
+      font-family: 'InterMedium', serif;
+      color: variables.$textgrey-color;
+      transition: all .3s;
+    }
+    .input {
+      margin-top: 20px;
+      display: block;
+      width: 100%;
+      padding: 7px 0;
+      outline: transparent;
+      border: none;
+      border-bottom: 1px solid #3369F3;
+      font-family: 'InterMedium', serif;
+      font-size: 13px;
+      line-height: 13px;
+      color: #1E1E1E;
+    }
+    .input:focus ~ label,
+    .input.active ~ label {
+        top: -6px;
+        font-size: 9px;
+        line-height: 9px;
+    }
+    .input.error ~ div {
+      display: block;
+    }
+  }
+
+  &__form-link {
+    margin-top: 14px;
+  }
+}

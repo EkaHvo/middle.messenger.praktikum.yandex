@@ -1,0 +1,18 @@
+<div class="login">
+    <div class="main__form-wrap">
+        <div class="main__title">Вход</div>
+        <form class="main__form">
+            {{#each loginInputs}}
+                {{> inputItem 
+                    type=this.type
+                    id=this.id 
+                    name=this.name 
+                    label=this.label 
+                    errorText=this.errorText
+                }}
+            {{/each}}
+            <button class="button main__form-button">Авторизоваться</button>
+            <a href="/signin.html" class="main__form-link main-link">Нет аккаунта?</a>
+        </form>
+    </div>
+</div>

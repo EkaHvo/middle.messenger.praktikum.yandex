@@ -1,0 +1,19 @@
+@use 'variables';
+
+.login,
+.signin {
+  width: 100%;
+  height: 100vh;
+  @extend %flex-center;
+}
+
+.login {
+  .main__form-wrap {
+    height: 450px;
+  }
+}
+.signin {
+  .main__form-wrap {
+    height: 615px;
+  }
+}
