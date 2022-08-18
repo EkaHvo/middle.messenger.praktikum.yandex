@@ -1,7 +1,7 @@
 <div class="signin">
-    <div class="main__form-wrap">
-        <div class="main__title">Регистрация</div>
-        <form class="main__form">
+    <div class="form-wrap">
+        <div class="title">Регистрация</div>
+        <form class="form">
             {{#each signinInputsObj}}
                 {{> inputItem 
                     type=this.type
@@ -12,8 +12,8 @@
                 }}
             {{/each}}
             <div class="buttons-wrap">
-                <button class="button main__form-button">Зарегистрироваться</button>
-                <a href="#" class="main__form-link main-link">Войти</a>
+                <button class="button">Зарегистрироваться</button>
+                <a href="#" class="link">Войти</a>
             </div>
         </form>
     </div>

@@ -1,12 +1,8 @@
 <li class="message">
-    <div class="avatar">
-        {{#if avatar}}
-            <img class="avatar__img" src={{ avatar }}></img>
-        {{/if}}
-    </div>
+    {{> avatarItem avatar=avatar}}
     <div class="info">
         <div class="info__wrap">
-            <span class="info__name">{{ name }}</span>
+            <span class="name">{{ name }}</span>
             <span class="info__date">{{ time }}</span>
         </div>
         <div class="info__wrap">

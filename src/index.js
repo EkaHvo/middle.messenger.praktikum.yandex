@@ -1,8 +1,8 @@
-import template from "./index.hbs";
+import startPage from "./index.hbs";
 import pageError from "./pages/page_error.hbs";
 import login from "./pages/login.hbs";
 import signin from "./pages/signin.hbs";
-import main_chart from "./pages/main_chart.hbs";
+import mainChart from "./pages/main_chart.hbs";
 import profile from "./pages/profile.hbs";
 import "./components";
 
@@ -21,21 +21,21 @@ const totalDataObj = {
             time: "10:15",
             text: "Текст со а может и нет",
             messageCount: "4",
-            avatar: "~/static/icons/foto.svg",
+            // avatar: "~/static/icons/foto.svg",
         },
         {
             name: "Лена",
             time: "Пн",
             text: "Привет! Как дела? Предлагаю сегодня поехать в Дагестан и сплавиться!",
             messageCount: "",
-            avatar: "https://klike.net/uploads/posts/2019-05/1556708032_1.jpg",
+            // avatar: "https://klike.net/uploads/posts/2019-05/1556708032_1.jpg",
         },
         {
             name: "Сергей Иванович",
             time: "23 января 2020",
             text: "Привет, дружище! Сто лет не общались! Что новенького у тебя?",
             messageCount: "3",
-            avatar: "http://localhost:1234/src/static/foto/camera.jpg",
+            // avatar: "http://localhost:1234/src/static/foto/camera.jpg",
         },
     ],
     loginInputs: [
@@ -159,7 +159,6 @@ const totalDataObj = {
 
 document.addEventListener("DOMContentLoaded", () => {
     const app = document.getElementById("app");
-
     if (window.location.pathname === "/page_404.html") {
         app.innerHTML = pageError(error404obj);
     } else if (window.location.pathname === "/page_500.html") {
@@ -171,8 +170,8 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (window.location.pathname === "/signin.html") {
         app.innerHTML = signin(totalDataObj);
     } else if (window.location.pathname === "/main_chart.html") {
-        app.innerHTML = main_chart(totalDataObj);
+        app.innerHTML = mainChart(totalDataObj);
     } else {
-        app.innerHTML = template({});
+        app.innerHTML = startPage({});
     }
 });

@@ -1,63 +1,68 @@
-@use 'variables';
-
 .profile {
-  font-family: 'InterMedium', serif;
-  font-size: 13px;
-  line-height: 13px;
-  color: #1E1E1E;
-  &__aside {
-    padding: 0 18px;
-    @extend %flex-center;
-  }
-  &__info {
-    @extend %flex-center;
-    flex-direction: column;
-    height: 100vh;
-    margin: 0 auto;
-    width: 510px;
-  }
-  &__avatar {
-    width: 130px;
-    height: 130px;
-    border-radius: 50%;
-    background: #EFEFEF;
-    @extend %flex-center;
-  }
-  &__link {
-    text-align: start;
-    padding: 10px 0;
-    border-bottom: variables.$border;
-  }
-  &__exit {
-    text-align: start;
-    padding: 10px 0;
-    color:#FF0000;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-  }
-  &__form {
-    position: relative;
-    padding: 100px 0 60px;
-    width: 100%;
-    .input-wrap {
-      display: flex;
-      justify-content: end;
-      align-items: center;
-      padding: 10px 0;
-      border-bottom: variables.$border;
+    font-family: 'InterMedium', serif;
+    font-size: 13px;
+    line-height: 13px;
+    color: var(--text-dark);
+    &__aside {
+        padding: 0 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-    .input {
-      border: none;
-      outline: transparent;
-      text-align: end;
+    &__info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 100vh;
+        margin: 0 auto;
+        width: 510px;
     }
-    .label {
-      position: absolute;
-      left: 0;
+    &__avatar {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        background: #EFEFEF;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-    :last-child {
-      border-bottom: none;
+    .link {
+        text-align: start;
+        padding: 10px 0;
+        border-bottom: var(--border);
     }
-  }
+    &__exit {
+        text-align: start;
+        padding: 10px 0;
+        color:var(--main-red);
+        background: transparent;
+        border: none;
+        cursor: pointer;
+    }
+    &__form {
+      position: relative;
+      padding: 100px 0 60px;
+      width: 100%;
+      .input-wrap {
+          display: flex;
+          justify-content: end;
+          align-items: center;
+          padding: 10px 0;
+          border-bottom: var(--border);
+      }
+      .input {
+          border: none;
+          outline: transparent;
+          text-align: end;
+      }
+      .label {
+          position: absolute;
+          left: 0;
+      }
+      :last-child {
+          border-bottom: none;
+      }
+    }
 }

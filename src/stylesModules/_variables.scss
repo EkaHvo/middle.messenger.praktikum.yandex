@@ -1,18 +1,10 @@
-$primary-color: #333;
-$main-bggrey: #EFEFEF;
-$textgrey-color: #999999;
-$aside-bg: #FBFBFB;
-$border: 1px solid #EAEAEA;
-
-%flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-%textgrey{
-  font-family: 'InterMedium', serif;
-  font-size: 12px;
-  line-height: 12px;
-  color: $textgrey-color;
+:root {
+    --primary-color: #333;
+    --main-bggrey: #EFEFEF;
+    --text-light: #999999;
+    --text-dark: #1E1E1E;
+    --aside-bg: #FBFBFB;
+    --border: 1px solid #EAEAEA;
+    --main-blue: #3369F3;
+    --main-red: #FF0000;
 }
