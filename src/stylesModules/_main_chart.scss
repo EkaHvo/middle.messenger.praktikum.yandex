@@ -93,8 +93,25 @@
     grid-template-columns: 47px 1fr;
     gap: 10px;
     cursor: pointer;
+    position: relative;
+    z-index: 1;
     &:first-child {
         border-top: var(--border);
+    }
+    &:after {
+        content: '';
+        position: absolute;
+        width: 310px;
+        left: -10px;
+        top: 2px;
+        height: calc(100% - 4px);
+        background-color: transparent;
+        z-index: -1;
+        transition: all .3s;
+    }
+    &.active:after,
+    &:hover:after {
+        background-color: var(--light-blue);
     }
 }
 .info {
@@ -103,7 +120,7 @@
     gap: 4px;
     &__wrap {
         display: grid;
-        grid-template-columns: 193px 20px;
+        grid-template-columns: 1fr 20px;
         gap: 20px;
         color: var(--text-light);
         &:first-child {
@@ -183,6 +200,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        transition: all .3s;
         &:hover {
             background-color: #F5F5F5;
             circle{
@@ -216,6 +234,9 @@
     }
     .clip {
         cursor: pointer;
+        & path {
+            transition: all .3s;
+        }
         &:hover path {
             fill: var(--main-blue);
         }
