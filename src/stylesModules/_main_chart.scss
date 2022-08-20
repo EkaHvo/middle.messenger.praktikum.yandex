@@ -4,6 +4,9 @@
         width: 310px;
         padding: 0 10px;
     }
+    &_empty {
+        display: none;
+    }
 }
 .aside {
     box-sizing: border-box;
@@ -50,16 +53,17 @@
         border-radius: 5px;
         border: none;
         outline: var(--main-bggrey);
-        &:focus + div {
+        &:focus + .search__icon,
+        &:hover + .search__icon {
             width: 20px;
             left: 10px;
-            & span {
+            .search__text {
                 width: 0;
                 opacity: 0;
             }
         }
     }
-    & div {
+    &__icon {
         position: absolute;
         top: 6px;
         height: 20px;
@@ -69,21 +73,13 @@
         justify-content: center;
         background-color: var(--main-bggrey);
         z-index: 1;
-        & span {
-            margin-left: 4px;
-            font-family: 'InterMedium', serif;
-            font-size: 12px;
-            line-height: 12px;
-            color: var(--text-light);
-        }
     }
-    &:hover div {
-        width: 20px;
-        left: 10px;
-        & span {
-            width: 0;
-            opacity: 0;
-        }
+    &__text {
+        margin-left: 4px;
+        font-family: 'InterMedium', serif;
+        font-size: 12px;
+        line-height: 12px;
+        color: var(--text-light);
     }
 }
 .message {
@@ -203,7 +199,7 @@
         transition: all .3s;
         &:hover {
             background-color: #F5F5F5;
-            circle{
+            circle {
                 fill: var(--main-blue);
             }
         }

@@ -7,8 +7,16 @@
     .link {
         margin-top: 14px;
     }
-    & > div {
+    .input-wrap {
         position: relative;
+        .error {
+            font-family: 'InterRegular', serif;
+            display: none;
+            font-size: 8px;
+            line-height: 8px;
+            margin-top: 7px;
+            color: var(--main-red);
+        }
     }
     .button {
         width: 100%;
@@ -18,14 +26,6 @@
         position: absolute;
         bottom: 30px;
         width: 100%;
-    }
-    .error {
-        font-family: 'InterRegular', serif;
-        display: none;
-        font-size: 8px;
-        line-height: 8px;
-        margin-top: 7px;
-        color: var(--main-red);
     }
     .label {
         position: absolute;
@@ -51,13 +51,10 @@
         line-height: 13px;
         color: var(--text-dark);
     }
-    .input:focus ~ label,
-    .input.active ~ label {
+    .input:focus ~ .label,
+    .input.active ~ .label {
         top: -6px;
         font-size: 9px;
         line-height: 9px;
-    }
-    .input.error ~ div {
-        display: block;
     }
 }
