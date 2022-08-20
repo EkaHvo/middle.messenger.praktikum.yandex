@@ -1,0 +1,31 @@
+<div class="chart">
+    <aside class="chart__aside aside">
+    <a href="/profile.html" class="toprofile">Профиль</a>
+    <div class="search">
+        <input class="search__input" type="text"></input>
+        <div class="search__icon">
+            {{>searchIcon}}
+            <span class="search__text">Поиск</span>
+        </div>
+    </div>
+    <ul class="messages">
+        {{#each messages}}
+            {{>messageItem 
+                avatar=this.avatar 
+                name=this.name 
+                time=this.time 
+                text=this.text 
+                messageCount=this.messageCount
+            }}
+        {{/each}}
+    </ul>
+    </aside>
+    <div class="chart chart_empty">
+        <span>Выберите чат чтобы отправить сообщение</span>
+    </div>
+    <div class="chart-area">
+        {{>friendInfoTopLine}}
+        <div></div>
+        {{>addMessageLine}}
+    </div>
+</div>
