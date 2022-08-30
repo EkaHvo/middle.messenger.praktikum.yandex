@@ -1,13 +1,13 @@
 <div class="profile">
     <aside class="profile__aside aside">
         <a href="/main_chart.html">
-            {{>arrowIcon}}
+            {{{arrowIcon}}}
         </a>
     </aside>
     <div class="profile__info">
-        {{>avatarItem class="profile__avatar"}}
+        {{{avatar}}}
         <form class="profile__form">
-          {{#each profileInputsObj}}
+          {{#each profileInputs}}
               {{> inputItem 
                   type=this.type
                   id=this.id 
