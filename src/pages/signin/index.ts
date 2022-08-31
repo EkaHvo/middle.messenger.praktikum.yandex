@@ -10,10 +10,13 @@ interface SigninPageProps {
 
 export class SigninPage extends Block {
   constructor(props: SigninPageProps){
-    super('div', props);
+    super(props);
   }
 
   render() {
-    return this.compile(template, {signinInputs: this.props.signinInputs})
+    return this.compile(template, {
+      signinInputs: this.props.signinInputs,
+      children: this.children,
+    })
   }
 }

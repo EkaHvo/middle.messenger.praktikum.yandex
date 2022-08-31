@@ -4,19 +4,19 @@
     <div class="search">
         <input class="search__input" type="text"></input>
         <div class="search__icon">
-            {{{searchIcon}}}
+            {{{SearchIcon}}}
             <span class="search__text">Поиск</span>
         </div>
     </div>
     <ul class="messages">
         {{#each messages}}
-            {{>messageItem 
+            {{{Message
                 avatar=this.avatar 
                 name=this.name 
                 time=this.time 
                 text=this.text 
                 messageCount=this.messageCount
-            }}
+            }}}
         {{/each}}
     </ul>
     </aside>
@@ -24,8 +24,8 @@
         <span>Выберите чат чтобы отправить сообщение</span>
     </div>
     <div class="chart-area">
-        {{{friendInfoTopLine}}}
+        {{{FriendInfoTopLine}}}
         <div></div>
-        {{{addMessageLine}}}
+        {{{AddMessageLine}}}
     </div>
 </div>

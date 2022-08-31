@@ -6,10 +6,10 @@
         name={{ name }} 
         placeholder={{ placeholder }}
         {{#if readonly}}
-            readonly={{readonly}}
+        readonly={{ readonly }}
         {{/if}}>
     <label class="label" for={{ id }}>{{ label }}</label>
-{{#if errorText}}
+    {{#if errorText}}
     <div class="error">{{ errorText }}</div>
-{{/if}}
+    {{/if}}
 </div>

@@ -7,7 +7,7 @@ interface noPhotoIconProps {
 
 export class NoPhotoIcon extends Block {
   constructor(props: noPhotoIconProps){
-    super('svg', props)
+    super(props)
   }
 
   render() {

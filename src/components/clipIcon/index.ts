@@ -7,7 +7,7 @@ interface ClipIconProps {
 
 export class ClipIcon extends Block {
   constructor(props:ClipIconProps){
-    super('svg', props)
+    super(props)
   }
 
   render() {

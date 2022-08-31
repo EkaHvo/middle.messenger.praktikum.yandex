@@ -10,10 +10,13 @@ interface LoginPageProps {
 
 export class LoginPage extends Block {
   constructor(props: LoginPageProps){
-    super('div', props);
+    super(props);
   }
 
   render() {
-    return this.compile(template, {loginInputs: this.props.loginInputs})
+    return this.compile(template, {
+      loginInputs: this.props.loginInputs,
+      children: this.children,
+    })
   }
 }

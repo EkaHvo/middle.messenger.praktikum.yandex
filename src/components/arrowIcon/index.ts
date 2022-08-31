@@ -7,7 +7,7 @@ interface ArrowIconProps {
 
 export class ArrowIcon extends Block {
   constructor(props:ArrowIconProps){
-    super('svg', props)
+    super(props)
   }
 
   render() {

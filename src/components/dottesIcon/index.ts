@@ -7,7 +7,7 @@ interface DottesIconProps {
 
 export class DottesIcon extends Block {
   constructor(props:DottesIconProps){
-    super('svg', props)
+    super(props)
   }
 
   render() {

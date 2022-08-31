@@ -14,16 +14,16 @@ class Block {
     protected props: Record<string, unknown>;
     private eventBus: ()=> EventBus;
     private _element: HTMLElement | null = null;
-    private _meta: { tagName: string; props:any;};
+    private _meta: { props:any;};
     protected children: Record<string, Block>;
 
-    constructor(tagName: string = "div", childrenAndProps: any = {}){
+    constructor(childrenAndProps: any = {}){
         const eventBus = new EventBus();
 
         const {props, children} = this._getChildrenAndProps(childrenAndProps);
 
         this._meta = {
-            tagName,
+            // tagName,
             props
         };
 
@@ -127,9 +127,9 @@ class Block {
     protected compile(template: (context:any) => string, context: any) {
         const contextAndStubs = { ...context };
 
-        Object.entries(this.children).forEach(([name, component]) => {
-            contextAndStubs[name] = `<div data-id="${component.id}"></div>`
-        })
+        // Object.entries(this.children).forEach(([name, component]) => {
+        //     contextAndStubs[name] = `<div data-id="${component.id}"></div>`
+        // })
         const html = template(contextAndStubs);
 
         const temp = document.createElement('template');
@@ -173,7 +173,7 @@ class Block {
     }
 
     private _createDocumentElement(tagName:string) {
-        return document.createElement(tagName);
+        // return document.createElement(tagName);
     }
 
     show() {

@@ -8,7 +8,7 @@ interface PageErrorProps {
 
 export class PageError extends Block {
   constructor(props: PageErrorProps){
-    super('div', props);
+    super(props);
   }
 
   render() {

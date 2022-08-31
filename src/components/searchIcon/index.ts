@@ -7,7 +7,7 @@ interface searchIconProps {
 
 export class SearchIcon extends Block {
   constructor(props:searchIconProps){
-    super('div', props)
+    super(props)
   }
 
   render() {

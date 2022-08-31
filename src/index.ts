@@ -8,7 +8,30 @@ import { LoginPage } from "./pages/login";
 import { ProfilePage } from "./pages/profile";
 import { PageError } from "./pages/pageError";
 
-import "./components";
+import { registerComponent } from "./utils/registerComponent";
+
+import { Avatar } from "./components/avatar";
+import { ArrowIcon } from "./components/arrowIcon";
+import { SearchIcon } from "./components/searchIcon";
+import { AddMessageLine } from "./components/addMessageLine";
+import { FriendInfoTopLine } from "./components/friendInfoTopLine";
+import { ClipIcon } from "./components/clipIcon";
+import { DottesIcon } from "./components/dottesIcon";
+import { Input } from "./components/input";
+import { NoPhotoIcon } from "./components/noPhotoIcon";
+import { Message } from "./components/message";
+
+registerComponent('Avatar', Avatar as any);
+registerComponent('ArrowIcon', ArrowIcon as any);
+registerComponent('SearchIcon', SearchIcon as any);
+registerComponent('AddMessageLine', AddMessageLine as any);
+registerComponent('FriendInfoTopLine', FriendInfoTopLine as any);
+registerComponent('ClipIcon', ClipIcon as any);
+registerComponent('DottesIcon', DottesIcon as any);
+registerComponent('Input', Input as any);
+registerComponent('NoPhotoIcon', NoPhotoIcon as any);
+registerComponent('Message', Message as any);
+
 
 window.addEventListener("DOMContentLoaded", () => {
 
