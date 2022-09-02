@@ -3,6 +3,7 @@ import template from './addMessageLine.hbs';
 
 interface AddMessageLineProps {
   class?: string,
+  isActiveClip: boolean
 }
 
 export class AddMessageLine extends Block {
@@ -13,6 +14,7 @@ export class AddMessageLine extends Block {
   render() {
     return this.compile(template, { 
       class: this.props.class,
+      isActiveClip: this.props.isActiveClip,
       children: this.children,
     })
   }

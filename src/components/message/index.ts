@@ -2,11 +2,8 @@ import Block from "../../utils/Block";
 import template from './message.hbs';
 
 interface messageProps {
-  name: string,
-  time: string, 
+  isIincoming: boolean,
   text: string,
-  messageCount?: string,
-  avatar?: string,
 }
 
 export class Message extends Block {
@@ -16,12 +13,8 @@ export class Message extends Block {
 
   render() {
     return this.compile(template, { 
-      name: this.props.name,
-      time: this.props.time, 
-      text: this.props.text,
-      messageCount: this.props.messageCount,
-      avatar: this.props.avatar,
-      children: this.children,
+      isIincoming: this.props.isIincoming, 
+      text: this.props.text, 
     })
   }
 }

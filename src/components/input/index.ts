@@ -1,7 +1,7 @@
 import Block from "../../utils/Block";
 import template from './input.hbs';
 
-interface inputProps {
+interface InputProps {
   type?: string,
   id?: string,
   name?: string,
@@ -9,10 +9,14 @@ interface inputProps {
   readonly?: boolean,
   label?: string,
   errorText?: string,
+  events?: {
+    focusin?: () => void,
+    focusout?: () => void,
+  }
 }
 
 export class Input extends Block {
-  constructor(props:inputProps){
+  constructor(props:InputProps){
     super(props)
   }
 
@@ -25,6 +29,8 @@ export class Input extends Block {
       readonly: this.props.readonly, 
       label: this.props.label, 
       errorText: this.props.errorText, 
+      events: this.props.events,
+      children: this.children,
     })
   }
 }

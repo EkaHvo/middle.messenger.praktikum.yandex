@@ -19,7 +19,10 @@ import { ClipIcon } from "./components/clipIcon";
 import { DottesIcon } from "./components/dottesIcon";
 import { Input } from "./components/input";
 import { NoPhotoIcon } from "./components/noPhotoIcon";
+import { MessageView } from "./components/messageView";
 import { Message } from "./components/message";
+import { Button } from "./components/button";
+import { CrossIcon } from "./components/crossIcon";
 
 registerComponent('Avatar', Avatar as any);
 registerComponent('ArrowIcon', ArrowIcon as any);
@@ -30,7 +33,10 @@ registerComponent('ClipIcon', ClipIcon as any);
 registerComponent('DottesIcon', DottesIcon as any);
 registerComponent('Input', Input as any);
 registerComponent('NoPhotoIcon', NoPhotoIcon as any);
+registerComponent('MessageView', MessageView as any);
 registerComponent('Message', Message as any);
+registerComponent('Button', Button as any);
+registerComponent('CrossIcon', CrossIcon as any);
 
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -72,7 +78,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
         } else if (window.location.pathname === "/main_chart.html") {
             const mainChart = new MainChartPage({
-                messages: testData.messages
+                messages: testData.messages,
+                messageViews: testData.messageViews,
+                hasActiveMessage: true,
+                isActiveTopLine: true,
+                isActiveClip: true
             });
             app.append(mainChart.getContent()!);
         } else {

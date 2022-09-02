@@ -3,6 +3,7 @@ import template from './friendInfoTopLine.hbs';
 
 interface FriendInfoTopLineProps {
   class?: string,
+  isActiveTopLine?: boolean,
 }
 
 export class FriendInfoTopLine extends Block {
@@ -12,6 +13,7 @@ export class FriendInfoTopLine extends Block {
 
   render() {
     return this.compile(template, { 
+      isActiveTopLine: this.props.isActiveTopLine,
       class: this.props.class,
       children: this.children,
     })

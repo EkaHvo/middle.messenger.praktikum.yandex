@@ -8,9 +8,9 @@
             <span class="search__text">Поиск</span>
         </div>
     </div>
-    <ul class="messages">
-        {{#each messages}}
-            {{{Message
+    <ul class="message-views">
+        {{#each messageViews}}
+            {{{MessageView
                 avatar=this.avatar 
                 name=this.name 
                 time=this.time 
@@ -20,12 +20,23 @@
         {{/each}}
     </ul>
     </aside>
-    <div class="chart chart_empty">
-        <span>Выберите чат чтобы отправить сообщение</span>
-    </div>
-    <div class="chart-area">
-        {{{FriendInfoTopLine}}}
-        <div></div>
-        {{{AddMessageLine}}}
-    </div>
+    {{#if hasActiveMessage}}
+        <div class="chart__area">
+            {{{FriendInfoTopLine isActiveTopLine = isActiveTopLine}}}
+            <div class="messages">
+                <div class="messages__date">12 декабря</div>
+                {{#each messages}}
+                    {{{Message 
+                        isIincoming= this.isIincoming
+                        text=this.text
+                    }}}
+                {{/each}}          
+            </div>
+            {{{AddMessageLine  isActiveClip = isActiveClip class="button__arrow_right"}}}
+        </div>
+    {{^}}
+        <div class="chart__area chart__area_empty ">
+            <span>Выберите чат чтобы отправить сообщение</span>
+        </div>
+    {{/if}}
 </div>

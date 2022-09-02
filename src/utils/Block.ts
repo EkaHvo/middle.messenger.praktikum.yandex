@@ -14,7 +14,7 @@ class Block {
     protected props: Record<string, unknown>;
     private eventBus: ()=> EventBus;
     private _element: HTMLElement | null = null;
-    private _meta: { props:any;};
+    private _meta: { props:any};
     protected children: Record<string, Block>;
 
     constructor(childrenAndProps: any = {}){
@@ -23,7 +23,6 @@ class Block {
         const {props, children} = this._getChildrenAndProps(childrenAndProps);
 
         this._meta = {
-            // tagName,
             props
         };
 
@@ -64,13 +63,8 @@ class Block {
         eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
     }
 
-    private _createResources() {
-        // const { tagName } = this._meta;
-        // this._element = this._createDocumentElement(tagName);
-    }
 
     private _init() {
-      this._createResources();
       this.init();
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
@@ -112,7 +106,6 @@ class Block {
 
     private _render() {
         const fragment = this.render();
-
         const newElement = fragment.firstElementChild as HTMLElement;
         this._element?.replaceWith(newElement);
         this._element = newElement;
@@ -127,9 +120,10 @@ class Block {
     protected compile(template: (context:any) => string, context: any) {
         const contextAndStubs = { ...context };
 
-        // Object.entries(this.children).forEach(([name, component]) => {
-        //     contextAndStubs[name] = `<div data-id="${component.id}"></div>`
-        // })
+        Object.entries(this.children).forEach(([name, component]) => {
+            contextAndStubs[name] = `<div data-id="${component.id}"></div>`
+        })
+        
         const html = template(contextAndStubs);
 
         const temp = document.createElement('template');

@@ -2,17 +2,12 @@
     <div class="form-wrap">
         <div class="title">Вход</div>
         <form class="form">
-            {{#each loginInputs}}
-                {{{ Input 
-                    type=this.type
-                    id=this.id
-                    name=this.name
-                    label=this.label
-                    errorText=this.errorText
-                }}}
-            {{/each}}
-            <button class="button">Авторизоваться</button>
-            <a href="/signin.html" class="link">Нет аккаунта?</a>
+            {{{inputLogin}}}
+            {{{inputPassword}}}
+            <div class="buttons-wrap">
+                {{{ Button text="Авторизоваться"}}}
+                <a href="/signin.html" class="link">Нет аккаунта?</a>
+            </div>
         </form>
     </div>
 </div>
