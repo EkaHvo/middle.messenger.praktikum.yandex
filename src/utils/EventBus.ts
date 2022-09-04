@@ -1,6 +1,5 @@
 export class EventBus {
-
-    protected readonly listeners: Record<string, Array<() => void>> = {};
+    private readonly listeners: Record<string, Array<(...args: any[]) => void>> = {};
 
     on(event: string, callback: () => void) {
         if(!this.listeners[event]){
