@@ -1,12 +1,11 @@
-import Block from "../../utils/Block";
+import Block from '../../utils/Block';
 import template from './login.hbs';
-import { Input } from '../../components/input';
+import {InputWrap} from '../../components/inputWrap';
+import { Button } from '../../components/button';
+import { INPUTREGEXP } from '../../utils/regexpConstants';
 
-interface loginInputsObj {
-  [key:string]:string
-}
 interface LoginPageProps {
-  loginInputs: Array<loginInputsObj>
+  [key:string]: string | boolean
 }
 
 export class LoginPage extends Block {
@@ -15,30 +14,56 @@ export class LoginPage extends Block {
   }
 
   protected init(): void {
-    this.children.inputLogin = new Input ({
+
+    this.children.loginInput = new InputWrap ({
       type: "text",
       id: "login",
       name: "login",
       label: "Логин",
+      value: '',
       errorText: "Неверный логин",
-      events: {
-        //todo 
-        focusin: ()=> console.log('test focusin'),
-        focusout: ()=> console.log('test focusout'),
-      },
+      inputRegexp: INPUTREGEXP.login,
     })
-    this.children.inputPassword = new Input ({
+    this.children.passwordInput = new InputWrap ({
       type: "password",
       id: "password",
       name: "password",
       label: "Пароль",
+      value: '',
       errorText: "Неверный пароль",
-      events: {
-        //todo 
-        focusin: ()=> console.log('test focusin'),
-        focusout: ()=> console.log('test focusout'),
-      },
+      inputRegexp: INPUTREGEXP.password,
     })
+
+    this.children.button = new Button ({
+      text: "Авторизоваться",
+      events: {
+        click: (e:Event) => this.onClick(e),
+      }
+    })
+  }
+
+  protected onClick(e:Event){
+    e.preventDefault();
+
+    let form = (e.target as HTMLElement).closest('.form');
+    if(form) {
+      const inputs = form.querySelectorAll('input');
+      let formData:Record<string, string> = {};
+      let isErrorForm:boolean = false;
+  
+      inputs.forEach(input => {
+        const name:string = input.name;
+        const value:string = input.value;
+
+        let isError:boolean = this.validate(value, INPUTREGEXP[name]);
+
+        if(isError) {
+          isErrorForm = true;
+        }
+        formData[name] = value;
+      })
+      console.log(formData)
+    }
   }
 
   render() {

@@ -14,17 +14,12 @@ class Block {
     protected props: Record<string, unknown>;
     private eventBus: ()=> EventBus;
     private _element: HTMLElement | null = null;
-    private _meta: { props:any};
     protected children: Record<string, Block>;
 
     constructor(childrenAndProps: any = {}){
         const eventBus = new EventBus();
 
         const {props, children} = this._getChildrenAndProps(childrenAndProps);
-
-        this._meta = {
-            props
-        };
 
         this.children = children;
         this.props = this._makePropsProxy(props);
@@ -63,7 +58,6 @@ class Block {
         eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
     }
 
-
     private _init() {
       this.init();
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
@@ -97,6 +91,7 @@ class Block {
             return;
         }
 
+        console.log(nextProps)
         Object.assign(this.props, nextProps);
     };
 
@@ -166,9 +161,9 @@ class Block {
         });
     }
 
-    private _createDocumentElement(tagName:string) {
-        // return document.createElement(tagName);
-    }
+    // private _createDocumentElement(tagName:string) {
+    //     return document.createElement(tagName);
+    // }
 
     show() {
         const content = this.getContent();
@@ -182,6 +177,11 @@ class Block {
         if(content){
             content.style.display = "none";
         }
+    }
+
+    validate(value:string, regString:string):boolean {
+        let reg = new RegExp(regString, 'gm');
+        return !reg.test(value);
     }
 }
 

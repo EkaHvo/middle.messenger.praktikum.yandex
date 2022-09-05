@@ -19,10 +19,15 @@ export class ProfilePage extends Block {
       class:"profile__avatar",
       events: {
         //todo вызов модального окна смены аватара
-        click: ()=> console.log('test avatar event'),
+        click: ()=> this.onclick(),
       },
     })
   }
+
+  onclick() {
+    console.log('test avatar event1111')
+  }
+
 
   render() {
     return this.compile(template, {

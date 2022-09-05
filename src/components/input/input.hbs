@@ -1,15 +1,14 @@
-<div class="input-wrap">
-    <input 
-        class="input" 
-        type={{ type }} 
-        id={{ id }} 
-        name={{ name }} 
-        placeholder={{ placeholder }}
-        {{#if readonly}}
-        readonly={{ readonly }}
-        {{/if}}>
-    <label class="label" for={{ id }}>{{ label }}</label>
-    {{#if errorText}}
-    <div class="error">{{ errorText }}</div>
+<input 
+    class="input" 
+    type={{ type }} 
+    id={{ id }} 
+    name={{ name }} 
+    {{#if value}}
+        value={{ value }}
     {{/if}}
-</div>
+    {{#if placeholder}}
+        placeholder={{ placeholder }}
+    {{/if}}
+    {{#if readonly}}
+        readonly={{ readonly }}
+    {{/if}}>

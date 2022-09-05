@@ -36,6 +36,8 @@ const testData = {
             name: "login",
             label: "Логин",
             errorText: "Неверный логин",
+            value: '',
+            inputRegexp: '^(?=.*[A-Za-z_-])[A-Za-z0-9_-]{3,20}$',
         },
         {
             type: "password",
@@ -43,22 +45,26 @@ const testData = {
             name: "password",
             label: "Пароль",
             errorText: "Неверный пароль",
+            value: '',
+            inputRegexp: '^(?=.*[A-Z])(?=.*[0-9])[A-Za-z0-9_-]{8,40}$',
         },
     ],
-    signinInputsObj: [
+    signinInputs: [
         {
             type: "email",
             id: "email",
             name: "email",
             label: "Почта",
             errorText: "Введите почту",
+            inputRegexp: '^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$'
         },
         {
             type: "text",
             id: "login",
             name: "login",
             label: "Логин",
-            errorText: "Введите логин",
+            errorText: "Неверный логин",
+            inputRegexp: '^(?=.*[A-Za-z_-])[A-Za-z0-9_-]{3,20}$',
         },
         {
             type: "text",
@@ -66,6 +72,7 @@ const testData = {
             name: "first_name",
             label: "Имя",
             errorText: "Введите имя",
+            inputRegexp: '^([А-Я]{1}[а-яё]{1,}|[A-Z]{1}[a-z]{1,})$',
         },
         {
             type: "text",
@@ -73,6 +80,7 @@ const testData = {
             name: "second_name",
             label: "Фамилия",
             errorText: "Введите фамилию",
+            inputRegexp: '^([А-Я]{1}[а-яё]{1,}|[A-Z]{1}[a-z]{1,})$',
         },
         {
             type: "phone",
@@ -80,20 +88,23 @@ const testData = {
             name: "phone",
             label: "Телефон",
             errorText: "Введите телефон",
+            inputRegexp: '^\\+?[0-9]{10,15}$',
         },
         {
             type: "password",
             id: "password",
             name: "password",
             label: "Пароль",
-            errorText: "Введите пароль",
+            errorText: "Неверный пароль",
+            inputRegexp: '^(?=.*[A-Z])(?=.*[0-9])[A-Za-z0-9_-]{8,40}$',
         },
         {
             type: "password",
-            id: "password_dbl",
-            name: "password_dbl",
+            id: "password",
+            name: "password",
             label: "Пароль (ещё раз)",
             errorText: "Пароли не совпадают",
+            inputRegexp: '^(?=.*[A-Z])(?=.*[0-9])[A-Za-z0-9_-]{8,40}$',
         },
     ],
     profileInputsObj: [

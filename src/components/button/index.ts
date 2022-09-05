@@ -3,6 +3,9 @@ import template from './button.hbs';
 
 interface ButtonProps {
   text: string,
+  events?: {
+    click: (e:Event) => void
+  }
 }
 
 export class Button extends Block {
@@ -12,7 +15,8 @@ export class Button extends Block {
 
   render() {
     return this.compile(template, { 
-      text: this.props.text
+      text: this.props.text,
+      events: this.props.events,
     })
   }
 }
