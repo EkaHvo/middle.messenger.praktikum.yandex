@@ -62,7 +62,6 @@ export class Form extends Block<FormProps> {
 
         if (inputs && Array.isArray(inputs)) {
             inputs.forEach((element: InputWrap) => {
-                console.log(element);
                 const value = element.getInputValue();
                 const name = element.getInputName();
 
