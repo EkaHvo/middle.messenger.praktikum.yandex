@@ -2,6 +2,7 @@ import { EventBus } from "./EventBus";
 import { nanoid } from "nanoid";
 import { INPUTREGEXP } from "./regexpConstants";
 
+
 class Block<P = any> {
     static EVENTS = {
         INIT: "init",
@@ -14,7 +15,7 @@ class Block<P = any> {
     protected props: P;
     private eventBus: () => EventBus;
     public _element: HTMLElement | null = null;
-    protected children: Record<string, Block>;
+    protected children: Record<string, any>;
 
     constructor(childrenAndProps: any = {}) {
         const eventBus = new EventBus();

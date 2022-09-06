@@ -31,7 +31,6 @@ export class ProfilePage extends Block {
 
     protected init(): void {
 
-        const buttonText:string = 'Сохранить';
 
         this.children.avatar = new Avatar ({
             class:"profile__avatar",
@@ -43,14 +42,14 @@ export class ProfilePage extends Block {
         this.children.form = new Form ({
             class: 'profile__form',
             inputs: inputs,
-            buttonText: buttonText,
+            buttonText: 'Сохранить',
             buttonClass: 'profile__button',
         });
 
         this.children.formChangeLogin = new Form ({
             class: 'profile__form',
             inputs: changePasswordInputs,
-            buttonText: buttonText,
+            buttonText: 'Сохранить',
             buttonClass: 'profile__button',
         });
 
@@ -88,6 +87,7 @@ export class ProfilePage extends Block {
 
     onChangeProfile() {
         (this.children.form as Form).showButton();
+        
         this.children.changeProfile.hide();
         this.children.changePassword.hide();
         this.children.exitProfile.hide();

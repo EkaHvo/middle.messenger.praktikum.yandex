@@ -27,9 +27,10 @@ export class Form extends Block<FormProps> {
         let inputs = this.props.inputs;
 
         if (inputs && Array.isArray(inputs)) {
-            let arr:InputWrap[] = [];
-            arr = inputs.map((input) => {
-                return new InputWrap({
+            
+            this.children.inputsBlock = inputs.map((input) => {
+
+                const inputWrap:InputWrap = new InputWrap({
                     type: input.type,
                     id: input.id,
                     name: input.name,
@@ -38,9 +39,9 @@ export class Form extends Block<FormProps> {
                     errorText: input.errorText,
                     placeholder: input.placeholder,
                 });
-            });
 
-            this.children.inputsBlock = arr;
+                return inputWrap
+            });
         }
     }
     showButton(): void {
