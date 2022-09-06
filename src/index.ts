@@ -1,10 +1,9 @@
 import startPage from "./index.hbs";
-import errorObj from "./dataFiles/errorData.ts";
 import testData from "./dataFiles/testData.ts";
 
 import { MainChartPage } from "./pages/mainChart";
-import { SigninPage } from "./pages/signin";
 import { LoginPage } from "./pages/login";
+import { SigninPage } from "./pages/signin";
 import { ProfilePage } from "./pages/profile";
 import { PageError } from "./pages/pageError";
 
@@ -24,6 +23,10 @@ import { InputLabel } from "./components/inputLabel";
 import { Message } from "./components/message";
 import { Button } from "./components/button";
 import { CrossIcon } from "./components/crossIcon";
+import { AddRemoveFriend } from "./components/addRemoveFriend";
+import { AddMessageModal } from "./components/addMessageModal";
+import { LinkItem } from "./components/linkItem";
+import { Form } from "./components/form";
 
 import { registerComponent } from "./utils/registerComponent";
 
@@ -43,7 +46,10 @@ registerComponent('InputLabel', InputLabel as any);
 registerComponent('Message', Message as any);
 registerComponent('Button', Button as any);
 registerComponent('CrossIcon', CrossIcon as any);
-
+registerComponent('AddRemoveFriend', AddRemoveFriend as any);
+registerComponent('AddMessageModal', AddMessageModal as any);
+registerComponent('LinkItem', LinkItem as any);
+registerComponent('Form', Form as any);
 
 window.addEventListener("DOMContentLoaded", () => {
 
@@ -52,22 +58,20 @@ window.addEventListener("DOMContentLoaded", () => {
     if(app){
         if (window.location.pathname === "/page_404.html") {
             const pageError = new PageError({
-                errorCode: errorObj.err404.errorCode,
-                errorText: errorObj.err404.errorText,
+                errorCode: "404",
+                errorText: "Не туда попали",
             });
             app.append(pageError.getContent()!);
 
         } else if (window.location.pathname === "/page_500.html") {
             const pageError = new PageError({
-                errorCode: errorObj.err500.errorCode,
-                errorText: errorObj.err500.errorText,
+                errorCode: "500",
+                errorText: "Мы уже фиксим",
             });
             app.append(pageError.getContent()!);
 
         } else if (window.location.pathname === "/profile.html") {
-            const profile = new ProfilePage({
-                profileInputs: testData.profileInputsObj
-            });
+            const profile = new ProfilePage({});
             app.append(profile.getContent()!);
 
         } else if (window.location.pathname === "/login.html") {
@@ -75,9 +79,7 @@ window.addEventListener("DOMContentLoaded", () => {
             app.append(login.getContent()!);
 
         } else if (window.location.pathname === "/signin.html") {
-            const signin = new SigninPage({
-                signinInputs: testData.signinInputs
-            });
+            const signin = new SigninPage({});
             app.append(signin.getContent()!);
 
         } else if (window.location.pathname === "/main_chart.html") {
@@ -85,8 +87,6 @@ window.addEventListener("DOMContentLoaded", () => {
                 messages: testData.messages,
                 messageViews: testData.messageViews,
                 hasActiveMessage: true,
-                isActiveTopLine: true,
-                isActiveClip: true
             });
             app.append(mainChart.getContent()!);
         } else {

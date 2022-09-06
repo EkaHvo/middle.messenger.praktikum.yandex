@@ -1,19 +1,7 @@
-<div class="signin">
+<div class={{ class }}>
     <div class="form-wrap">
-        <div class="title">Регистрация</div>
-        <form class="form">
-            {{{ emailInput }}}
-            {{{ loginInput }}}
-            {{{ firstNameInput }}}
-            {{{ secondNameInput }}}
-            {{{ phoneInput }}}
-            {{{ passwordInput }}}
-            {{{ passwordDblInput }}}
-
-            <div class="buttons-wrap">
-                {{{ Button text="Зарегистрироваться"}}}
-                <a href="#" class="link">Войти</a>
-            </div>
-        </form>
+        <div class="title">{{ title }}</div>
+        {{{ form }}}
+        <a href={{ linkHref }} class="link {{ linkClass }}">{{ linkText }}</a>
     </div>
 </div>

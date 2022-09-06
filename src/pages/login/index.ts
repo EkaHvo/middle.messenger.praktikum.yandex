@@ -1,74 +1,41 @@
 import Block from '../../utils/Block';
 import template from './login.hbs';
-import {InputWrap} from '../../components/inputWrap';
-import { Button } from '../../components/button';
+import { Form } from '../../components/form';
 import { INPUTREGEXP } from '../../utils/regexpConstants';
 
-interface LoginPageProps {
-  [key:string]: string | boolean
+interface inputsObj {
+  [key:string]:string
 }
 
+const inputs:Array<inputsObj> = [
+    { type: "text", id: "login", name: "login", label: "Логин", value: '', errorText: "Неверный логин", inputRegexp: INPUTREGEXP.login },
+    { type: "password", id: "password", name: "password", label: "Пароль", value: '', errorText: "Неверный пароль", inputRegexp: INPUTREGEXP.password },
+];
+
 export class LoginPage extends Block {
-  constructor(props: LoginPageProps){
-    super(props);
-  }
-
-  protected init(): void {
-
-    this.children.loginInput = new InputWrap ({
-      type: "text",
-      id: "login",
-      name: "login",
-      label: "Логин",
-      value: '',
-      errorText: "Неверный логин",
-      inputRegexp: INPUTREGEXP.login,
-    })
-    this.children.passwordInput = new InputWrap ({
-      type: "password",
-      id: "password",
-      name: "password",
-      label: "Пароль",
-      value: '',
-      errorText: "Неверный пароль",
-      inputRegexp: INPUTREGEXP.password,
-    })
-
-    this.children.button = new Button ({
-      text: "Авторизоваться",
-      events: {
-        click: (e:Event) => this.onClick(e),
-      }
-    })
-  }
-
-  protected onClick(e:Event){
-    e.preventDefault();
-
-    let form = (e.target as HTMLElement).closest('.form');
-    if(form) {
-      const inputs = form.querySelectorAll('input');
-      let formData:Record<string, string> = {};
-      let isErrorForm:boolean = false;
-  
-      inputs.forEach(input => {
-        const name:string = input.name;
-        const value:string = input.value;
-
-        let isError:boolean = this.validate(value, INPUTREGEXP[name]);
-
-        if(isError) {
-          isErrorForm = true;
-        }
-        formData[name] = value;
-      })
-      console.log(formData)
+    constructor(props: any){
+        super(props);
     }
-  }
 
-  render() {
-    return this.compile(template, {
-      children: this.children,
-    })
-  }
+    protected init(): void {
+        const buttonText:string = 'Авторизоваться';
+
+        this.children.form = new Form ({
+            class: 'form',
+            inputs: inputs,
+            buttonText: buttonText,
+            buttonClass: 'button__login',
+        });
+    }
+
+    render() {
+        return this.compile(template, {
+            class: 'login',
+            title: 'Вход',
+            linkHref: '/signin.html',
+            linkText: 'Нет аккаунта?',
+            linkClass: 'form__link',
+            children: this.children,
+        })
+    }
 }

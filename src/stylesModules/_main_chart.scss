@@ -263,21 +263,41 @@
     line-height: 13px;
 }
 .add-message {
-    border-top: 1px solid #EAEAEA;
-    position: fixed;
     width: calc(100% - 310px - 40px);
+    grid-template-columns: 32px 1fr 28px;
+    align-items: center;
+    display: grid;
+    position: fixed;
     bottom: 0;
     gap: 10px;
     padding: 10px 0;
-    align-items: center;
-    display: grid;
-    grid-template-columns: 32px 1fr 28px;
+    border-top: 1px solid #EAEAEA;
+    z-index: 1;
     &__input {
         background: #EFEFEF;
         border-radius: 30px;
         padding: 10px 20px;
         border: none;
         outline: transparent;
+    }
+    &__modal {
+        background: #fff;
+        border-radius: 12px;
+        padding: 15px;
+        position: absolute;
+        bottom: calc(100% + 10px);
+        left: 0;
+        box-shadow: 0 0 6px #00000024;
+    }
+    &__item {
+        align-items: center;
+        display: flex;
+        &:not(:last-child){
+            margin-bottom: 15px;
+        }
+    }
+    &__text {
+        margin-left: 15px;
     }
     .clip {
         cursor: pointer;

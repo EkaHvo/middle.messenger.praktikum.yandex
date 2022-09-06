@@ -2,17 +2,18 @@ import Block from "../../utils/Block";
 import template from './clipIcon.hbs';
 
 interface ClipIconProps {
-  class?: string,
+    class?: string,
+    events: {
+        click: () => void,
+    },
 }
 
-export class ClipIcon extends Block {
-  constructor(props:ClipIconProps){
-    super(props)
-  }
+export class ClipIcon extends Block<ClipIconProps> {
+    constructor(props:ClipIconProps){
+        super(props)
+    }
 
-  render() {
-    return this.compile(template, { 
-      class: this.props.class
-    })
-  }
+    render() {
+        return this.compile(template, {})
+    }
 }

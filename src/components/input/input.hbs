@@ -1,6 +1,8 @@
 <input 
-    class="input" 
-    type={{ type }} 
+    class="input {{class}}" 
+    {{#if type}}
+        type={{ type }} 
+    {{/if}}
     id={{ id }} 
     name={{ name }} 
     {{#if value}}

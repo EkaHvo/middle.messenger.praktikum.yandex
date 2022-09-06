@@ -2,17 +2,17 @@ import Block from "../../utils/Block";
 import template from './arrowIcon.hbs';
 
 interface ArrowIconProps {
-  class?: string,
+    class?: string,
 }
 
-export class ArrowIcon extends Block {
-  constructor(props:ArrowIconProps){
-    super(props)
-  }
+export class ArrowIcon extends Block<ArrowIconProps> {
+    constructor(props:ArrowIconProps){
+        super(props)
+    }
 
-  render() {
-    return this.compile(template, { 
-      class: this.props.class
-    })
-  }
+    render() {
+        return this.compile(template, { 
+            class: this.props.class
+        })
+    }
 }

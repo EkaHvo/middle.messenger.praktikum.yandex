@@ -2,22 +2,23 @@ import Block from "../../utils/Block";
 import template from './inputLabel.hbs';
 
 interface InputLabelProps {
-  [key:string]:string | boolean
+    label?: string,
+    id?: string,
+    isActive?: boolean,
+    classActive?: string,
 }
 
-export class InputLabel extends Block {
-  constructor(props:InputLabelProps){
-    super(props)
-  }
+export class InputLabel extends Block<InputLabelProps> {
+    constructor(props:InputLabelProps){
+        super(props)
+    }
 
-  render() {
-    return this.compile(template, { 
-      label: this.props.label,
-      id: this.props.id,
-      isActive: this.props.isActive,
-      classActive: this.props.classActive,
-    })
-  }
+    render() {
+        return this.compile(template, { 
+            label: this.props.label,
+            id: this.props.id,
+            isActive: this.props.isActive,
+            classActive: this.props.classActive,
+        })
+    }
 }
-
-

@@ -38,14 +38,17 @@ ul {
     }
 }
 .link {
-    display: block;
     width: 100%;
-    font-family: 'InterMedium', serif;
-    text-decoration: none;
-    font-size: 11px;
-    line-height: 11px;
     text-align: center;
     color: var(--main-blue);
+    font-family: InterMedium, serif;
+    font-size: 11px;
+    line-height: 11px;
+    text-decoration: none;
+    display: block;
+    border: none;
+    background: none;
+    cursor: pointer;
 }
 .form-wrap {
     width: 340px;

@@ -5,14 +5,14 @@ interface CrossIconProps {
   class?: string,
 }
 
-export class CrossIcon extends Block {
-  constructor(props:CrossIconProps){
-    super(props)
-  }
+export class CrossIcon extends Block<CrossIconProps> {
+    constructor(props:CrossIconProps){
+        super(props)
+    }
 
-  render() {
-    return this.compile(template, { 
-      class: this.props.class
-    })
-  }
+    render() {
+        return this.compile(template, { 
+            class: this.props.class
+        })
+    }
 }
