@@ -1,0 +1,9 @@
+<div    
+    {{#if isIncoming}}
+        class="message message__incoming"
+      {{^}}
+        class="message message__outgoing"
+    {{/if}}>
+    {{ text }}
+    <span class="message__time">{{ time }}</span>
+</div>

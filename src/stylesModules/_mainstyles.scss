@@ -11,27 +11,44 @@ ul {
     list-style: none;
 }
 .button {
-    display: block;
+    width: 280px;
+    margin: 0 auto;
     cursor: pointer;
-    border: none;
-    color: white;
-    font-family: 'InterMedium', serif;
-    padding: 12px 0;
+    color: #fff;
     text-align: center;
+    background: var(--main-blue);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 0;
+    font-family: InterMedium, serif;
     font-size: 13px;
     line-height: 13px;
-    background: var(--main-blue);
-    border-radius: 8px;
+    display: block;
+    &__arrow {
+        &_right {
+            cursor: pointer;
+            transform: rotate(180deg);
+        }
+    }
+    &__cross {
+        cursor: pointer;
+        &_rotate {
+            transform: rotate(45deg);
+        }
+    }
 }
 .link {
-    display: block;
     width: 100%;
-    font-family: 'InterMedium', serif;
-    text-decoration: none;
-    font-size: 11px;
-    line-height: 11px;
     text-align: center;
     color: var(--main-blue);
+    font-family: InterMedium, serif;
+    font-size: 11px;
+    line-height: 11px;
+    text-decoration: none;
+    display: block;
+    border: none;
+    background: none;
+    cursor: pointer;
 }
 .form-wrap {
     width: 340px;

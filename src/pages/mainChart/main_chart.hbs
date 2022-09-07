@@ -1,0 +1,45 @@
+<div class="chart">
+    <aside class="chart__aside aside">
+    <a href="/profile.html" class="toprofile">Профиль</a>
+    <div class="search">
+        <input class="search__input" type="text"></input>
+        <div class="search__icon">
+            {{{SearchIcon}}}
+            <span class="search__text">Поиск</span>
+        </div>
+    </div>
+    <ul class="message-views">
+        {{#each messageViews}}
+            {{{MessageView
+                avatar=this.avatar 
+                name=this.name 
+                time=this.time 
+                text=this.text 
+                messageCount=this.messageCount
+            }}}
+        {{/each}}
+    </ul>
+    </aside>
+    {{#if hasActiveMessage}}
+        <div class="chart__area">
+            {{{ FriendInfoTopLine }}}
+
+            <div class="messages">
+                <div class="messages__date">12 декабря</div>
+                {{#each messages}}
+                    {{{Message 
+                        isIncoming= this.isIncoming
+                        text=this.text
+                        time=this.time
+                    }}}
+                {{/each}}          
+            </div>
+
+            {{{ AddMessageLine }}}
+        </div>
+    {{^}}
+        <div class="chart__area chart__area_empty ">
+            <span>Выберите чат чтобы отправить сообщение</span>
+        </div>
+    {{/if}}
+</div>

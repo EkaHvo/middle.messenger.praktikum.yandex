@@ -1,0 +1,15 @@
+<li class="message-view">
+    {{{Avatar avatar=this.avatar}}}
+    <div class="info">
+        <div class="info__wrap">
+            <span class="name">{{ name }}</span>
+            <span class="info__date">{{ time }}</span>
+        </div>
+        <div class="info__wrap">
+            <span class="info__text">{{ text }}</span>
+            {{#if messageCount}}
+                <span class="info__unread-count">{{ messageCount }}</span>
+            {{/if}}
+        </div>
+    </div>
+</li>
