@@ -3,34 +3,19 @@ import template from './profile.hbs';
 import {Avatar} from '../../components/avatar';
 import { LinkItem } from '../../components/linkItem';
 import { Form } from '../../components/form';
-import { INPUTREGEXP } from '../../utils/regexpConstants';
 
-interface inputsObj {
-    [key:string]:string
+interface ProfilePageProps {
+    inputs:Array<Record<string, string>>,
+    changePasswordInputs:Array<Record<string, string>>,
 }
 
-const inputs:Array<inputsObj> = [
-    { type: "email",id: "email",name: "email",label: "Почта",errorText: "Неверная почта",inputRegexp: INPUTREGEXP.email,placeholder: "pochta@yandex.ru"},
-    { type: "text", id: "login", name: "login", label: "Логин", errorText: "Неверный логин", inputRegexp: INPUTREGEXP.login, placeholder: "ivanivanov",},
-    { type: "text", id: "first_name", name: "first_name", label: "Имя", errorText: "Неверное имя", inputRegexp: INPUTREGEXP.first_name, placeholder: "Иван",},
-    { type: "text", id: "second_name", name: "second_name", label: "Фамилия", errorText: "Неверная фамилия", inputRegexp: INPUTREGEXP.second_name, placeholder: "Иванов",},
-    { type: "text", id: "display_name", name: "display_name", label: "Имя в Чате", errorText: "Неверная фамилия", inputRegexp: INPUTREGEXP.display_name, placeholder: "IVAN",},
-    { type: "phone", id: "phone", name: "phone", label: "Телефон", errorText: "Введите телефон", inputRegexp: INPUTREGEXP.phone, placeholder: "+7(909)-967-30-30",},
-];
-
-const changePasswordInputs:Array<inputsObj> = [
-    { type: "password", id: "password", name: "password", label: "Старый пароль", errorText: "Неверный пароль", inputRegexp: INPUTREGEXP.password, value: '111111111' },
-    { type: "password", id: "password_dbl", name: "password_dbl", label: "Новый пароль", errorText: "Неверный пароль", inputRegexp: INPUTREGEXP.password, value: '111111111' },
-    { type: "password", id: "password_repeat", name: "password_repeat", label: "Повторите новый пароль", errorText: "Пароли не совпадают", inputRegexp: INPUTREGEXP.password, value: '111111111' }
-];
-
-export class ProfilePage extends Block {
-    constructor(props: any){
+export class ProfilePage extends Block<ProfilePageProps> {
+    constructor(props: {}){
         super(props);
     }
 
     protected init(): void {
-
+        const {inputs, changePasswordInputs} = this.props;
 
         this.children.avatar = new Avatar ({
             class:"profile__avatar",

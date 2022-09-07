@@ -6,7 +6,7 @@ interface ArrowIconProps {
 }
 
 export class ArrowIcon extends Block<ArrowIconProps> {
-    constructor(props:ArrowIconProps){
+    constructor(props:{}){
         super(props)
     }
 

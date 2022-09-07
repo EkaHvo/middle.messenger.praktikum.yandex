@@ -1,22 +1,13 @@
 import Block from "../../utils/Block";
 import template from './inputWrap.hbs';
 import {Input} from '../input';
-import {InputLabel} from '../inputLabel';
-import {ErrorInput} from '../errorInput';
+import validate from "../../utils/validate";
+import { InputLabel } from '../inputLabel';
+import { ErrorInput } from '../errorInput';
 
-interface InputWrapProps {
-    type?: string, 
-    id?: string,  
-    name?: string, 
-    placeholder?: string,  
-    readonly?: boolean,
-    value?: string, 
-    label?: string, 
-    errorText?: string, 
-}
 
-export class InputWrap extends Block<InputWrapProps> {
-    constructor(props:InputWrapProps){
+export class InputWrap extends Block<Record<string, string|boolean>> {
+    constructor(props:{}){
         super(props)
     }
 
@@ -49,12 +40,12 @@ export class InputWrap extends Block<InputWrapProps> {
     }
 
     getInputValue(){
-        let input:HTMLInputElement = (this.children.input._element as HTMLInputElement);
+        let input:HTMLInputElement = (this.children.input.element as HTMLInputElement);
         return input.value;
     }
 
     getInputName(){
-        let input:HTMLInputElement = (this.children.input._element as HTMLInputElement);
+        let input:HTMLInputElement = (this.children.input.element as HTMLInputElement);
         return input.name;
     }
 
@@ -69,9 +60,7 @@ export class InputWrap extends Block<InputWrapProps> {
         const inputName:string = (e.target as HTMLInputElement).name;
 
         if(!inputValue){
-            this.children.label.setProps({
-            isActive: false,
-            });
+            this.children.label.setProps({isActive: false});
             this.children.error.hide();
             return
         }
@@ -80,7 +69,7 @@ export class InputWrap extends Block<InputWrapProps> {
             isActive: true,
         });
 
-        let isError:boolean = this.validate(inputValue, inputName);
+        let isError:boolean = validate(inputValue, inputName);
 
         if(isError){
             this.children.error.show();

@@ -1,3 +1,4 @@
+import queryStringify from "./QueryStringify";
 
 const METHODS = {
     GET: 'GET',
@@ -7,24 +8,12 @@ const METHODS = {
     DELETE: 'DELETE',
 };
 
-type dataObj = {
+type DataObj = {
   [key:string]:any;
 }
 
-function queryStringify(data: dataObj = {}) {
-    if (typeof data !== 'object') {
-        throw new Error('Data not an object');
-    }
-
-    const result = Object.keys(data).reduce((result, key) => {
-        return result += `${key}=${data[key]}&`;
-    }, '?');
-
-    return result.slice(0, -1);
-}
-
-class HTTPTransport {
-    get = (url:string, options: dataObj = {}) => {
+export default class HTTPTransport {
+    get = (url:string, options: DataObj = {}) => {
         let newUrl = url;
         if(!!options.data){
             newUrl = url + queryStringify(options.data)
@@ -32,19 +21,19 @@ class HTTPTransport {
         return this.request(newUrl, {...options, method: METHODS.GET}, options.timeout);
     };
 
-    post = (url:string, options: dataObj = {}) => {
+    post = (url:string, options: DataObj = {}) => {
         return this.request(url, {...options, method: METHODS.POST}, options.timeout);
     };
 
-    put = (url:string, options: dataObj = {}) => {
+    put = (url:string, options: DataObj = {}) => {
         return this.request(url, {...options, method: METHODS.PUT}, options.timeout);
     };
 
-    delete = (url:string, options: dataObj = {}) => { 
+    delete = (url:string, options: DataObj = {}) => { 
         return this.request(url, {...options, method: METHODS.DELETE}, options.timeout);
     };
 
-    request = (url:string, options: dataObj = {}, timeout = 5000) => {
+    request = (url:string, options: DataObj = {}, timeout = 5000) => {
         const {headers = {}, method, data} = options;
 
         return new Promise(function(resolve, reject) {

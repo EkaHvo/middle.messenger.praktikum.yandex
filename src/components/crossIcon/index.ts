@@ -6,7 +6,7 @@ interface CrossIconProps {
 }
 
 export class CrossIcon extends Block<CrossIconProps> {
-    constructor(props:CrossIconProps){
+    constructor(props:{}){
         super(props)
     }
 

@@ -1,12 +1,9 @@
 import Block from "../../utils/Block";
 import template from './searchIcon.hbs';
 
-interface SearchIconProps {
-    class?: string,
-}
 
-export class SearchIcon extends Block<SearchIconProps> {
-    constructor(props:SearchIconProps){
+export class SearchIcon extends Block<Record<string, string>> {
+    constructor(props:{}){
         super(props)
     }
 

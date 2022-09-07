@@ -1,30 +1,19 @@
 import Block from '../../utils/Block';
 import template from './signin.hbs';
 import { Form } from '../../components/form';
-import { INPUTREGEXP } from '../../utils/regexpConstants';
 
-interface inputsObj {
-  [key:string]:string
+interface SigninPageProps {
+    inputs:Array<Record<string, string>>
 }
 
-const inputs:Array<inputsObj> = [
-    {type: "email", id: "email", name: "email", label: "Почта", errorText: "Неверная почта", inputRegexp: INPUTREGEXP.email },
-    { type: "text", id: "login", name: "login", label: "Логин", errorText: "Неверный логин", inputRegexp: INPUTREGEXP.login },
-    { type: "text", id: "first_name", name: "first_name", label: "Имя", errorText: "Неверное имя", inputRegexp: INPUTREGEXP.first_name },
-    { type: "text", id: "second_name", name: "second_name", label: "Фамилия", errorText: "Неверная фамилия", inputRegexp: INPUTREGEXP.second_name },
-    { type: "phone", id: "phone", name: "phone", label: "Телефон", errorText: "Введите телефон", inputRegexp: INPUTREGEXP.phone },
-    { type: "password", id: "password", name: "password", label: "Пароль", errorText: "Неверный пароль", inputRegexp: INPUTREGEXP.password },
-    { type: "password", id: "password", name: "password", label: "Пароль (ещё раз)", errorText: "Пароли не совпадают", inputRegexp: INPUTREGEXP.passwordDbl },
-];
-
-export class SigninPage extends Block {
-    constructor(props: any){
+export class SigninPage extends Block<SigninPageProps> {
+    constructor(props: {}){
         super(props);
     }
 
-
     protected init(): void {
         const buttonText:string = 'Зарегистрироваться';
+        const {inputs} = this.props;
 
         this.children.form = new Form ({
             class: 'form',

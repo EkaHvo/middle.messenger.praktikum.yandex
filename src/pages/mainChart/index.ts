@@ -1,17 +1,14 @@
 import Block from "../../utils/Block";
 import template from './main_chart.hbs';
 
-interface MainChartObj {
-    [key:string]:string  | boolean,
-}
 interface MainChartPageProps {
-    messageViews: Array<MainChartObj>,
-    messages: Array<MainChartObj>,
+    messageViews: Array<Record<string, string|boolean>>,
+    messages: Array<Record<string, string|boolean>>,
     hasActiveMessage: boolean,
 }
 
 export class MainChartPage extends Block<MainChartPageProps> {
-    constructor(props: MainChartPageProps){
+    constructor(props: {}){
         super(props);
     }
 

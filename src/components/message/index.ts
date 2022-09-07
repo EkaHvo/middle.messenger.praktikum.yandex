@@ -1,20 +1,17 @@
 import Block from "../../utils/Block";
 import template from './message.hbs';
 
-interface MessageProps {
-    isIincoming: boolean,
-    text: string,
-}
 
-export class Message extends Block<MessageProps> {
-  constructor(props:MessageProps){
+export class Message extends Block<Record<string, string|boolean>> {
+  constructor(props:{}){
         super(props)
   }
 
   render() {
     return this.compile(template, { 
-        isIincoming: this.props.isIincoming, 
+        isIncoming: this.props.isIncoming, 
         text: this.props.text, 
+        time: this.props.time, 
     })
   }
 }

@@ -9,11 +9,13 @@ interface ClipIconProps {
 }
 
 export class ClipIcon extends Block<ClipIconProps> {
-    constructor(props:ClipIconProps){
+    constructor(props:{}){
         super(props)
     }
 
     render() {
-        return this.compile(template, {})
+        return this.compile(template, {
+            class: this.props.class,
+        })
     }
 }

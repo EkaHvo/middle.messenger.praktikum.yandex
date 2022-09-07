@@ -10,7 +10,7 @@ interface ButtonProps {
 }
 
 export class Button extends Block<ButtonProps> {
-    constructor(props:ButtonProps){
+    constructor(props:{}){
         super(props)
     }
 

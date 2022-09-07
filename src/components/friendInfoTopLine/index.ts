@@ -3,27 +3,33 @@ import template from './friendInfoTopLine.hbs';
 import  { DottesIcon } from '../dottesIcon';
 import  { AddRemoveFriend } from '../addRemoveFriend';
 
-interface FriendInfoTopLineProps {}
 
-export class FriendInfoTopLine extends Block<FriendInfoTopLineProps> {
-    constructor(props:FriendInfoTopLineProps){
-        super(props)
-    }
+export class FriendInfoTopLine extends Block {
 
     protected init(): void {
 
         this.children.dottesIcon = new DottesIcon ({
             class: '',
             events: {
-            click: () => this.onClick(),
+                click: () => this.toggleModal(),
             },
         });
 
-        this.children.addRemoveFriend = new AddRemoveFriend ({});
+        this.children.addRemoveFriend = new AddRemoveFriend ({
+            modalItems: [
+                {
+                    text: 'Добавить пользователя',
+                },
+                {
+                    class: 'button__cross_rotate',
+                    text: 'Удалить пользователя',
+                },
+            ]
+        });
         this.children.addRemoveFriend.hide();
     }
 
-    onClick(){
+    toggleModal(){
         const modal:HTMLElement|null = document.querySelector('.friend__change-modal');
 
         if(modal){

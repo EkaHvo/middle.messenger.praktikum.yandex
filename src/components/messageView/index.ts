@@ -1,16 +1,9 @@
 import Block from "../../utils/Block";
 import template from './messageView.hbs';
 
-interface MessageProps {
-    name: string,
-    time: string, 
-    text: string,
-    messageCount?: string,
-    avatar?: string,
-}
 
-export class MessageView extends Block<MessageProps> {
-    constructor(props:MessageProps){
+export class MessageView extends Block<Record<string, string>> {
+    constructor(props:{}){
         super(props)
     }
 

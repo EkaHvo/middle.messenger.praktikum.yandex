@@ -1,12 +1,9 @@
 import Block from "../../utils/Block";
 import template from './noPhotoIcon.hbs';
 
-interface noPhotoIconProps {
-    class?: string,
-}
 
-export class NoPhotoIcon extends Block<noPhotoIconProps> {
-    constructor(props: noPhotoIconProps){
+export class NoPhotoIcon extends Block<Record<string, string>> {
+    constructor(props: {}){
         super(props)
     }
 

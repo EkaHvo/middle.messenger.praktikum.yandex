@@ -1,10 +1,5 @@
 <div class="friend__change-modal">
-    <div class="friend__change-item">
-        {{{CrossIcon}}}
-        <span class="friend__change-text">Добавить пользователя</span>
-    </div>
-    <div class="friend__change-item">
-        {{{CrossIcon class="button__cross_rotate"}}}
-        <span class="friend__change-text">Удалить пользователя</span>
-    </div>
+    {{#each modalItemsBlock}}
+        {{{ this }}}
+    {{/each}}
 </div>

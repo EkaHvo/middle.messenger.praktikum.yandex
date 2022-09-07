@@ -10,7 +10,7 @@ interface AvatarProps {
 }
 
 export class Avatar extends Block<AvatarProps> {
-    constructor(props: AvatarProps) {
+    constructor(props: {}) {
         super(props);
     }
 
@@ -18,7 +18,6 @@ export class Avatar extends Block<AvatarProps> {
         return this.compile(template, {
             class: this.props.class,
             src: this.props.src,
-            events: this.props.events,
             children: this.children,
         });
     }

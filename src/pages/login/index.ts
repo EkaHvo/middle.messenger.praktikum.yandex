@@ -1,24 +1,20 @@
 import Block from '../../utils/Block';
 import template from './login.hbs';
 import { Form } from '../../components/form';
-import { INPUTREGEXP } from '../../utils/regexpConstants';
 
-interface inputsObj {
-  [key:string]:string
+
+interface LoginPageProps {
+    inputs: Array<Record<string, string>>
 }
 
-const inputs:Array<inputsObj> = [
-    { type: "text", id: "login", name: "login", label: "Логин", value: '', errorText: "Неверный логин", inputRegexp: INPUTREGEXP.login },
-    { type: "password", id: "password", name: "password", label: "Пароль", value: '', errorText: "Неверный пароль", inputRegexp: INPUTREGEXP.password },
-];
-
-export class LoginPage extends Block {
-    constructor(props: any){
+export class LoginPage extends Block<LoginPageProps> {
+    constructor(props: {}){
         super(props);
     }
 
     protected init(): void {
         const buttonText:string = 'Авторизоваться';
+        const {inputs} = this.props;
 
         this.children.form = new Form ({
             class: 'form',

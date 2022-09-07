@@ -24,6 +24,7 @@ import { Message } from "./components/message";
 import { Button } from "./components/button";
 import { CrossIcon } from "./components/crossIcon";
 import { AddRemoveFriend } from "./components/addRemoveFriend";
+import { FriendChangeItem } from "./components/friendChangeItem";
 import { AddMessageModal } from "./components/addMessageModal";
 import { LinkItem } from "./components/linkItem";
 import { Form } from "./components/form";
@@ -47,6 +48,7 @@ registerComponent('Message', Message as any);
 registerComponent('Button', Button as any);
 registerComponent('CrossIcon', CrossIcon as any);
 registerComponent('AddRemoveFriend', AddRemoveFriend as any);
+registerComponent('FriendChangeItem', FriendChangeItem as any);
 registerComponent('AddMessageModal', AddMessageModal as any);
 registerComponent('LinkItem', LinkItem as any);
 registerComponent('Form', Form as any);
@@ -71,15 +73,44 @@ window.addEventListener("DOMContentLoaded", () => {
             app.append(pageError.getContent()!);
 
         } else if (window.location.pathname === "/profile.html") {
-            const profile = new ProfilePage({});
+            const profile = new ProfilePage({
+                inputs: [
+                    { type: "email",id: "email",name: "email",label: "Почта",errorText: "Неверная почта", placeholder: "pochta@yandex.ru"},
+                    { type: "text", id: "login", name: "login", label: "Логин", errorText: "Неверный логин", placeholder: "ivanivanov",},
+                    { type: "text", id: "first_name", name: "first_name", label: "Имя", errorText: "Неверное имя", placeholder: "Иван",},
+                    { type: "text", id: "second_name", name: "second_name", label: "Фамилия", errorText: "Неверная фамилия", placeholder: "Иванов",},
+                    { type: "text", id: "display_name", name: "display_name", label: "Имя в Чате", errorText: "Неверная фамилия", placeholder: "IVAN",},
+                    { type: "phone", id: "phone", name: "phone", label: "Телефон", errorText: "Введите телефон", placeholder: "+7(909)-967-30-30",},
+                ],
+                changePasswordInputs: [
+                    { type: "password", id: "password", name: "password", label: "Старый пароль", errorText: "Неверный пароль", value: '111111111' },
+                    { type: "password", id: "password_dbl", name: "password_dbl", label: "Новый пароль", errorText: "Неверный пароль", value: '111111111' },
+                    { type: "password", id: "password_repeat", name: "password_repeat", label: "Повторите новый пароль", errorText: "Пароли не совпадают", value: '111111111' }
+                ],
+            });
             app.append(profile.getContent()!);
 
         } else if (window.location.pathname === "/login.html") {
-            const login = new LoginPage({});
+            const login = new LoginPage({
+                inputs: [
+                    { type: "text", id: "login", name: "login", label: "Логин", value: '', errorText: "Неверный логин"},
+                    { type: "password", id: "password", name: "password", label: "Пароль", value: '', errorText: "Неверный пароль"},
+                ]
+            });
             app.append(login.getContent()!);
 
         } else if (window.location.pathname === "/signin.html") {
-            const signin = new SigninPage({});
+            const signin = new SigninPage({
+                inputs: [
+                    {type: "email", id: "email", name: "email", label: "Почта", errorText: "Неверная почта"},
+                    { type: "text", id: "login", name: "login", label: "Логин", errorText: "Неверный логин"},
+                    { type: "text", id: "first_name", name: "first_name", label: "Имя", errorText: "Неверное имя"},
+                    { type: "text", id: "second_name", name: "second_name", label: "Фамилия", errorText: "Неверная фамилия"},
+                    { type: "phone", id: "phone", name: "phone", label: "Телефон", errorText: "Введите телефон"},
+                    { type: "password", id: "password", name: "password", label: "Пароль", errorText: "Неверный пароль"},
+                    { type: "password", id: "password", name: "password", label: "Пароль (ещё раз)", errorText: "Пароли не совпадают"},
+                ]
+            });
             app.append(signin.getContent()!);
 
         } else if (window.location.pathname === "/main_chart.html") {

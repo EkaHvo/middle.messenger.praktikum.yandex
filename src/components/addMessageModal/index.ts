@@ -1,12 +1,7 @@
 import Block from "../../utils/Block";
 import template from './addMessageModal.hbs';
 
-interface AddMessageModalProps {}
-
-export class AddMessageModal extends Block<AddMessageModalProps> {
-    constructor(props:AddMessageModalProps){
-        super(props)
-    }
+export class AddMessageModal extends Block {
 
     render() {
         return this.compile(template, { 

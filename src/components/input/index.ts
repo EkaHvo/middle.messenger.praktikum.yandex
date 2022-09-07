@@ -17,7 +17,7 @@ interface InputProps {
 }
 
 export class Input extends Block<InputProps> {
-    constructor(props:InputProps){
+    constructor(props:{}){
         super(props)
     }
 
@@ -30,7 +30,6 @@ export class Input extends Block<InputProps> {
             placeholder: this.props.placeholder,
             readonly: this.props.readonly,
             value: this.props.value,
-            events: this.props.events,
         })
     }
 }

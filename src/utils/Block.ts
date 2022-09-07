@@ -1,7 +1,5 @@
 import { EventBus } from "./EventBus";
 import { nanoid } from "nanoid";
-import { INPUTREGEXP } from "./regexpConstants";
-
 
 class Block<P = any> {
     static EVENTS = {
@@ -14,7 +12,7 @@ class Block<P = any> {
     public id = nanoid(8);
     protected props: P;
     private eventBus: () => EventBus;
-    public _element: HTMLElement | null = null;
+    private _element: HTMLElement | null = null;
     protected children: Record<string, any>;
 
     constructor(childrenAndProps: any = {}) {
@@ -29,7 +27,7 @@ class Block<P = any> {
         eventBus.emit(Block.EVENTS.INIT);
     }
 
-    _getChildrenAndProps(childrenAndProps: any) {
+    private _getChildrenAndProps(childrenAndProps: any) {
         const props: Record<string, any> = {};
         const children: Record<string, Block> = {};
 
@@ -44,11 +42,11 @@ class Block<P = any> {
         return { props, children };
     }
 
-    _addEvents() {
+    private _addEvents() {
         const events: Record<string, () => void> = (this.props as any).events;
 
-        if(!events){
-            return
+        if (!events) {
+            return;
         }
 
         Object.keys(events).forEach((eventName) => {
@@ -197,11 +195,6 @@ class Block<P = any> {
         if (content) {
             content.style.display = "none";
         }
-    }
-
-    validate(value: string, name: string): boolean {
-        let reg = new RegExp(INPUTREGEXP[name], "gm");
-        return !reg.test(value);
     }
 }
 

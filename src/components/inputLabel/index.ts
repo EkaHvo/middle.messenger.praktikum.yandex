@@ -1,15 +1,9 @@
 import Block from "../../utils/Block";
 import template from './inputLabel.hbs';
 
-interface InputLabelProps {
-    label?: string,
-    id?: string,
-    isActive?: boolean,
-    classActive?: string,
-}
 
-export class InputLabel extends Block<InputLabelProps> {
-    constructor(props:InputLabelProps){
+export class InputLabel extends Block<Record<string, string|boolean>> {
+    constructor(props:{}){
         super(props)
     }
 

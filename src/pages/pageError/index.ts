@@ -2,11 +2,12 @@ import Block from "../../utils/Block";
 import template from './page_error.hbs';
 
 interface PageErrorProps {
-    [key:string]:string
+    errorCode?: string
+    errorText?: string,
 }
 
-export class PageError extends Block {
-    constructor(props: PageErrorProps){
+export class PageError extends Block<PageErrorProps> {
+    constructor(props: {}){
         super(props);
     }
 

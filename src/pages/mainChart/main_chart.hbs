@@ -28,8 +28,9 @@
                 <div class="messages__date">12 декабря</div>
                 {{#each messages}}
                     {{{Message 
-                        isIincoming= this.isIincoming
+                        isIncoming= this.isIncoming
                         text=this.text
+                        time=this.time
                     }}}
                 {{/each}}          
             </div>

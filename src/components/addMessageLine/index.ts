@@ -3,13 +3,8 @@ import template from './addMessageLine.hbs';
 import { ClipIcon } from '../clipIcon';
 import { AddMessageModal } from '../addMessageModal';
 
-interface AddMessageLineProps {
-}
 
-export class AddMessageLine extends Block<AddMessageLineProps> {
-    constructor(props:AddMessageLineProps){
-        super(props)
-    }
+export class AddMessageLine extends Block {
 
     protected init(): void {
 
@@ -32,7 +27,6 @@ export class AddMessageLine extends Block<AddMessageLineProps> {
                 this.children.addMessageModal.hide();
             }
         }
-
     }
 
     render() {

@@ -1,5 +1,6 @@
 import Block from "../../utils/Block";
 import template from "./form.hbs";
+import validate from "../../utils/validate";
 import { Button } from "../../components/button";
 import { InputWrap } from "../../components/inputWrap";
 
@@ -11,7 +12,7 @@ interface FormProps {
 }
 
 export class Form extends Block<FormProps> {
-    constructor(props: FormProps) {
+    constructor(props: {}) {
         super(props);
     }
 
@@ -24,7 +25,7 @@ export class Form extends Block<FormProps> {
             },
         });
 
-        let inputs = this.props.inputs;
+        const { inputs } = this.props;
 
         if (inputs && Array.isArray(inputs)) {
             
@@ -65,7 +66,7 @@ export class Form extends Block<FormProps> {
                 const value = element.getInputValue();
                 const name = element.getInputName();
 
-                const isError: boolean = this.validate(value, name);
+                const isError: boolean = validate(value, name);
                 isError ? (isFormError = true) : "";
 
                 formData[name] = value;
