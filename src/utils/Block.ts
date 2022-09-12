@@ -1,7 +1,7 @@
 import { EventBus } from "./EventBus";
 import { nanoid } from "nanoid";
 
-class Block<P = any> {
+class Block<P extends Record<string,any> = any> {
     static EVENTS = {
         INIT: "init",
         FLOW_CDM: "flow:component-did-mount",
@@ -13,9 +13,9 @@ class Block<P = any> {
     protected props: P;
     private eventBus: () => EventBus;
     private _element: HTMLElement | null = null;
-    protected children: Record<string, any>;
+    protected children: Record<string, Block|any>;
 
-    constructor(childrenAndProps: any = {}) {
+    constructor(childrenAndProps: P) {
         const eventBus = new EventBus();
 
         const { props, children } = this._getChildrenAndProps(childrenAndProps);
@@ -27,19 +27,19 @@ class Block<P = any> {
         eventBus.emit(Block.EVENTS.INIT);
     }
 
-    private _getChildrenAndProps(childrenAndProps: any) {
-        const props: Record<string, any> = {};
+    private _getChildrenAndProps(childrenAndProps: P): {props:P, children: Record<string, Block|Block[]>} {
+        const props: Record<string, unknown> = {};
         const children: Record<string, Block> = {};
 
         Object.entries(childrenAndProps).forEach(([key, value]) => {
             if (value instanceof Block) {
-                children[key] = value;
+                children[key as string] = value;
             } else {
                 props[key] = value;
             }
         });
 
-        return { props, children };
+        return { props: props as P, children };
     }
 
     private _addEvents() {
@@ -78,19 +78,19 @@ class Block<P = any> {
         this.eventBus().emit(Block.EVENTS.FLOW_CDM);
     }
 
-    protected _componentDidUpdate() {
-        const response = this.componentDidUpdate();
+    protected _componentDidUpdate(oldProps:P, newProps: P) {
+        const response = this.componentDidUpdate(oldProps, newProps);
         if (response) {
             this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
         }
         this._render;
     }
 
-    public componentDidUpdate() {
+    public componentDidUpdate(oldProps:P, newProps: P) {
         return true;
     }
 
-    public setProps = (nextProps: any) => {
+    public setProps = (nextProps: P) => {
         if (!nextProps) {
             return;
         }
@@ -115,8 +115,8 @@ class Block<P = any> {
         return new DocumentFragment();
     }
 
-    protected compile(template: (context: unknown) => string, context: {}) {
-        const contextAndStubs: Record<string, any> = { ...context };
+    protected compile(template: (context: any) => string, context: any) {
+        const contextAndStubs = { ...context };
 
         Object.entries(this.children).forEach(([name, component]) => {
             if (Array.isArray(component)) {
@@ -151,7 +151,7 @@ class Block<P = any> {
         return `<div data-id="${id}"></div>`;
     }
 
-    private _replaceStub(content: any, component: any): void {
+    private _replaceStub(content: any, component: Block): void {
         const stub = content.querySelector(`[data-id="${component.id}"]`);
         if (!stub) {
             return;
@@ -163,17 +163,17 @@ class Block<P = any> {
         return this.element;
     }
 
-    private _makePropsProxy(props: any) {
+    private _makePropsProxy(props: P) {
         const self = this;
 
         return new Proxy(props, {
-            get(target, prop) {
+            get(target: P, prop: string) {
                 const value = target[prop];
                 return typeof value === "function" ? value.bind(target) : value;
             },
-            set(target, prop, value) {
+            set(target: P, prop: string, value) {
                 const oldTarget = { ...target };
-                target[prop] = value;
+                target[prop as keyof P] = value;
                 self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
                 return true;
             },
@@ -185,16 +185,12 @@ class Block<P = any> {
 
     show() {
         const content = this.getContent();
-        if (content) {
-            content.style.display = "block";
-        }
+        content!.style.display = "block";
     }
 
     hide() {
         const content = this.getContent();
-        if (content) {
-            content.style.display = "none";
-        }
+        content!.style.display = "none";
     }
 }
 

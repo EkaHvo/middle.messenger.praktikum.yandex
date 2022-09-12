@@ -9,7 +9,7 @@ interface DottesIconProps {
 }
 
 export class DottesIcon extends Block<DottesIconProps> {
-    constructor(props:{}){
+    constructor(props:DottesIconProps){
         super(props)
     }
 

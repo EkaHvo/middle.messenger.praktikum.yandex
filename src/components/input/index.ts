@@ -17,7 +17,7 @@ interface InputProps {
 }
 
 export class Input extends Block<InputProps> {
-    constructor(props:{}){
+    constructor(props:InputProps){
         super(props)
     }
 
