@@ -8,7 +8,7 @@ interface MainChartPageProps {
 }
 
 export class MainChartPage extends Block<MainChartPageProps> {
-    constructor(props: {}){
+    constructor(props: MainChartPageProps){
         super(props);
     }
 

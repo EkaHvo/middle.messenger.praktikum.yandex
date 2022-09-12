@@ -5,9 +5,23 @@ import validate from "../../utils/validate";
 import { InputLabel } from '../inputLabel';
 import { ErrorInput } from '../errorInput';
 
+interface InputWrapProps {
+    events?: {
+        focus: () => void,
+        blur: (e:Event) => void,
+    },
+    type?: string, 
+    id?: string, 
+    name?: string, 
+    placeholder?: string,
+    readonly?: boolean,
+    value?: string,
+    label: string,
+    errorText: string,
+}
 
-export class InputWrap extends Block<Record<string, string|boolean>> {
-    constructor(props:{}){
+export class InputWrap extends Block<InputWrapProps> {
+    constructor(props: InputWrapProps){
         super(props)
     }
 

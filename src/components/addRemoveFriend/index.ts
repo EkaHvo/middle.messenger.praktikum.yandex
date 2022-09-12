@@ -7,7 +7,7 @@ interface AddRemoveFriendProps {
 }
 
 export class AddRemoveFriend extends Block<AddRemoveFriendProps> {
-    constructor(props:{}){
+    constructor(props:AddRemoveFriendProps){
         super(props)
     }
 

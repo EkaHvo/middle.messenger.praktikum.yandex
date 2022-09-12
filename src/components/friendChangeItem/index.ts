@@ -10,7 +10,7 @@ interface FriendChangeItemProps {
 }
 
 export class FriendChangeItem extends Block<FriendChangeItemProps> {
-    constructor(props:{}){
+    constructor(props:FriendChangeItemProps){
         super(props)
     }
 

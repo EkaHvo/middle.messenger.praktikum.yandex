@@ -10,7 +10,7 @@ interface AvatarProps {
 }
 
 export class Avatar extends Block<AvatarProps> {
-    constructor(props: {}) {
+    constructor(props: AvatarProps) {
         super(props);
     }
 
