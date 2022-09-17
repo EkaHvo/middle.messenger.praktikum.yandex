@@ -8,7 +8,7 @@ interface LoginPageProps {
 }
 
 export class LoginPage extends Block<LoginPageProps> {
-    constructor(props: {}){
+    constructor(props: LoginPageProps){
         super(props);
     }
 

@@ -78,15 +78,15 @@ class Block<P extends Record<string,any> = any> {
         this.eventBus().emit(Block.EVENTS.FLOW_CDM);
     }
 
-    protected _componentDidUpdate(oldProps:P, newProps: P) {
-        const response = this.componentDidUpdate(oldProps, newProps);
+    protected _componentDidUpdate() {
+        const response = this.componentDidUpdate();
         if (response) {
             this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
         }
         this._render;
     }
 
-    public componentDidUpdate(oldProps:P, newProps: P) {
+    public componentDidUpdate() {
         return true;
     }
 

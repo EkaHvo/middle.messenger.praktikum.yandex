@@ -13,6 +13,7 @@ type DataObj = {
 }
 
 export default class HTTPTransport {
+
     get = (url:string, options: DataObj = {}) => {
         let newUrl = url;
         if(!!options.data){
@@ -61,4 +62,5 @@ export default class HTTPTransport {
             }
         });
     };
+    
 }
