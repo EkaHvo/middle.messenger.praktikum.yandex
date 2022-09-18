@@ -1,27 +1,53 @@
 import Block from '../../utils/Block';
 import template from './login.hbs';
-import { Form } from '../../components/form';
+import { InputWrap } from "../../components/inputWrap";
+import { Button } from "../../components/button";
+import { SigninData} from '../../api/Auth-api';
+import AuthController from '../../controllers/AuthController';
 
+export class LoginPage extends Block{
+    
+    protected init(): void {
+        this.children.button = new Button({
+            buttonClass: 'button__login',
+            buttonText: 'Авторизоваться',
+            events: {
+                click: (e: Event) => this.onSubmit(e),
+            },
+        });
 
-interface LoginPageProps {
-    inputs: Array<Record<string, string>>
-}
+        const inputs = [
+            {type: "text",id: "login", name: "login", label: "Логин", value: '', errorText: "Неверный логин"},
+            { type: "password", id: "password", name: "password", label: "Пароль", value: '', errorText: "Неверный пароль"},
+        ];
 
-export class LoginPage extends Block<LoginPageProps> {
-    constructor(props: LoginPageProps){
-        super(props);
+        this.children.inputsBlock = inputs.map((input) => {
+
+            const inputWrap:InputWrap = new InputWrap({
+                type: input.type,
+                id: input.id,
+                name: input.name,
+                label: input.label,
+                value: input.value,
+                errorText: input.errorText,
+            });
+
+            return inputWrap
+        });
     }
 
-    protected init(): void {
-        const buttonText:string = 'Авторизоваться';
-        const {inputs} = this.props;
+    protected onSubmit(e: Event) {
+        e.preventDefault();
 
-        this.children.form = new Form ({
-            class: 'form',
-            inputs: inputs,
-            buttonText: buttonText,
-            buttonClass: 'button__login',
-        });
+        const values = Object
+        .values(this.children.inputsBlock)
+        .map((input:InputWrap) => ([((input as InputWrap).getInputName()),((input as InputWrap).getInputValue())]));
+
+        const data = Object.fromEntries(values) as SigninData;
+
+        console.log("formData: ", data)
+
+        AuthController.signin(data);
     }
 
     render() {

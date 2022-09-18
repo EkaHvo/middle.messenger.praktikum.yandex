@@ -4,19 +4,23 @@ import {Avatar} from '../../components/avatar';
 import { LinkItem } from '../../components/linkItem';
 import { Form } from '../../components/form';
 
-interface ProfilePageProps {
-    inputs:Array<Record<string, string>>,
-    changePasswordInputs:Array<Record<string, string>>,
-}
+const inputs = [
+    { type: "email",id: "email",name: "email",label: "Почта",errorText: "Неверная почта", placeholder: "pochta@yandex.ru"},
+    { type: "text", id: "login", name: "login", label: "Логин", errorText: "Неверный логин", placeholder: "ivanivanov",},
+    { type: "text", id: "first_name", name: "first_name", label: "Имя", errorText: "Неверное имя", placeholder: "Иван",},
+    { type: "text", id: "second_name", name: "second_name", label: "Фамилия", errorText: "Неверная фамилия", placeholder: "Иванов",},
+    { type: "text", id: "display_name", name: "display_name", label: "Имя в Чате", errorText: "Неверная фамилия", placeholder: "IVAN",},
+    { type: "phone", id: "phone", name: "phone", label: "Телефон", errorText: "Введите телефон", placeholder: "+7(909)-967-30-30",},
+];
+const changePasswordInputs = [
+    { type: "password", id: "password", name: "password", label: "Старый пароль", errorText: "Неверный пароль", value: '111111111' },
+    { type: "password", id: "password_dbl", name: "password_dbl", label: "Новый пароль", errorText: "Неверный пароль", value: '111111111' },
+    { type: "password", id: "password_repeat", name: "password_repeat", label: "Повторите новый пароль", errorText: "Пароли не совпадают", value: '111111111' }
+];
 
-export class ProfilePage extends Block<ProfilePageProps> {
-    constructor(props: {}){
-        super(props);
-    }
+export class ProfilePage extends Block {
 
     protected init(): void {
-        const {inputs, changePasswordInputs} = this.props;
-
         this.children.avatar = new Avatar ({
             class:"profile__avatar",
             events: {

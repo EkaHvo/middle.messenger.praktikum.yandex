@@ -14,10 +14,6 @@ class Router {
       }
 
       this.routes = [];
-      // this.history = window.history;
-      // this._currentRoute = null;
-      // this._rootQuery = rootQuery;
-
       Router.__instance = this;
   }
 
@@ -28,10 +24,10 @@ class Router {
   } 
 
   public start() {
-      window.onpopstate = ((event: PopStateEvent )=> {
+      window.onpopstate = (event: PopStateEvent ) => {
         const target = event.currentTarget as Window;
         this._onRoute(target.location.pathname);
-      }).bind(this);
+      };
 
       this._onRoute(window.location.pathname);
   }
@@ -39,7 +35,11 @@ class Router {
   private _onRoute(pathname:string) {
       const route = this.getRoute(pathname);
       if(!route){
-        //todo redirect 404
+        //todo redirect 
+        // if(this.defaultBlock){
+        //   this.go('/404');
+        // }
+        
         return
       }
 

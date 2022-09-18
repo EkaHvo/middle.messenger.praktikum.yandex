@@ -1,6 +1,9 @@
 import Block from "./Block";
-import isEqual from "./isEqual";
-import render from "./renderDOM";
+import renderDOM from "./renderDOM";
+
+const isEqual = (lhs:string, rhs:string) => {
+return lhs === rhs;
+}
 
 class Route {
     private _block:Block | null = null;
@@ -19,7 +22,7 @@ class Route {
     render() {
       if (!this._block) {
           this._block = new this._blockClass({});
-          render(this._query, this._block);
+          renderDOM(this._query, this._block);
           return;
       }
     }

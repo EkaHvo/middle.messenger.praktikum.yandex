@@ -21,7 +21,7 @@ export class Form extends Block<FormProps> {
             buttonClass: this.props.buttonClass,
             buttonText: this.props.buttonText,
             events: {
-                click: (e: Event) => this.onClick(e),
+                click: (e: Event) => this.onSubmit(e),
             },
         });
 
@@ -53,28 +53,14 @@ export class Form extends Block<FormProps> {
         this.children.button.hide();
     }
 
-    protected onClick(e: Event) {
+    protected onSubmit(e: Event) {
         e.preventDefault();
 
-        const inputs = this.children.inputsBlock;
+        const data = Object
+        .values(this.children.inputsBlock)
+        .map((input:InputWrap)=> ([(input.getInputName()),(input.getInputValue())]))
+        console.log("formData: ", data)
 
-        let formData: Record<string, string> = {};
-        let isFormError: boolean = false;
-
-        if (inputs && Array.isArray(inputs)) {
-            inputs.forEach((element: InputWrap) => {
-                const value = element.getInputValue();
-                const name = element.getInputName();
-
-                const isError: boolean = validate(value, name);
-                isError ? (isFormError = true) : "";
-
-                formData[name] = value;
-            });
-        }
-
-        console.log("isFormError: ", isFormError);
-        console.log("formData: ", formData);
     }
 
     render() {

@@ -1,9 +1,10 @@
-import HTTPTransport from '../utils/HTTPTransport';
 import BaseAPI from './Base-api';
 
-const chatAPIInstance = new HTTPTransport('api/v1/chats');
 
-export default class ChatAPI extends BaseAPI {
+export class ChatAPI extends BaseAPI {
+    constructor(){
+        super('/charts')
+    }
     create() {
         return chatAPIInstance.post('/', {title: 'string'});
     }
