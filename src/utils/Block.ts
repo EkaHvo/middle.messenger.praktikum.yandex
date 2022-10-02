@@ -29,10 +29,12 @@ class Block<P extends Record<string,any> = any> {
 
     private _getChildrenAndProps(childrenAndProps: P): {props:P, children: Record<string, Block|Block[]>} {
         const props: Record<string, unknown> = {};
-        const children: Record<string, Block> = {};
+        const children: Record<string, Block | Block[]> = {};
 
         Object.entries(childrenAndProps).forEach(([key, value]) => {
-            if (value instanceof Block) {
+            if(Array.isArray(value) && value.length > 0 && value.every(v => v instanceof Block)){
+                children[key as string] = value;
+            } else if (value instanceof Block) {
                 children[key as string] = value;
             } else {
                 props[key] = value;
@@ -78,15 +80,14 @@ class Block<P extends Record<string,any> = any> {
         this.eventBus().emit(Block.EVENTS.FLOW_CDM);
     }
 
-    protected _componentDidUpdate() {
-        const response = this.componentDidUpdate();
+    protected _componentDidUpdate(oldProps: P, newProps: P) {
+        const response = this.componentDidUpdate(oldProps, newProps);
         if (response) {
             this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
         }
-        this._render;
     }
 
-    public componentDidUpdate() {
+    protected componentDidUpdate(oldProps: P, newProps: P) {
         return true;
     }
 

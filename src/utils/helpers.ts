@@ -36,3 +36,17 @@ export function set(object: Indexed | unknown, path: string, value: unknown): In
   }), value as any);
   return merge(object as Indexed, result);
 }
+
+export function getDate(time:string, type:string):string{
+    let timestap:Date = new Date(Date.parse(time));
+    let timeString:string = '';
+
+    if(type === 'date'){
+      timeString = timestap.toLocaleString('ru-RU',{ year: 'numeric', month: 'long', day: 'numeric' });
+    }
+    if(type === 'time'){
+      timeString = timestap.toLocaleString('ru-RU',{ hour: 'numeric', minute: 'numeric'});
+    }
+    return timeString;
+}
+

@@ -1,32 +1,46 @@
 import Block from "../../utils/Block";
 import template from './profile.hbs';
 import {Avatar} from '../../components/avatar';
-import { LinkItem } from '../../components/linkItem';
+import { Link } from '../../components/linkItem';
 import { Form } from '../../components/form';
+import { ArrowIcon } from "../../components/arrowIcon";
+import { AvatarEditor } from "../../components/avatarEditor";
+import { Overlay } from "../../components/overlay";
+import AuthController from '../../controllers/AuthController';
+import Router from '../../utils/Router';
+import store from "../../utils/Store";
 
-const inputs = [
-    { type: "email",id: "email",name: "email",label: "Почта",errorText: "Неверная почта", placeholder: "pochta@yandex.ru"},
-    { type: "text", id: "login", name: "login", label: "Логин", errorText: "Неверный логин", placeholder: "ivanivanov",},
-    { type: "text", id: "first_name", name: "first_name", label: "Имя", errorText: "Неверное имя", placeholder: "Иван",},
-    { type: "text", id: "second_name", name: "second_name", label: "Фамилия", errorText: "Неверная фамилия", placeholder: "Иванов",},
-    { type: "text", id: "display_name", name: "display_name", label: "Имя в Чате", errorText: "Неверная фамилия", placeholder: "IVAN",},
-    { type: "phone", id: "phone", name: "phone", label: "Телефон", errorText: "Введите телефон", placeholder: "+7(909)-967-30-30",},
-];
-const changePasswordInputs = [
-    { type: "password", id: "password", name: "password", label: "Старый пароль", errorText: "Неверный пароль", value: '111111111' },
-    { type: "password", id: "password_dbl", name: "password_dbl", label: "Новый пароль", errorText: "Неверный пароль", value: '111111111' },
-    { type: "password", id: "password_repeat", name: "password_repeat", label: "Повторите новый пароль", errorText: "Пароли не совпадают", value: '111111111' }
-];
 
 export class ProfilePage extends Block {
 
     protected init(): void {
-        this.children.avatar = new Avatar ({
-            class:"profile__avatar",
+        AuthController.fetchUser(); 
+
+        this.children.arrowIcon = new ArrowIcon ({
+            class: 'profile__back',
             events: {
-                click: ()=> this.onclick(),
+                click: ()=> Router.go('/messenger'),
             },
         });
+
+        this.children.avatar = new Avatar ({
+            class:"profile__avatar",
+            src: store.getState().user.avatar,
+            events: {
+                click: ()=> this.showAvatarEditor(),
+            },
+        });
+        console.log(store.getState())
+
+        const inputs = [
+            { type: "email",id: "email",name: "email",label: "Почта",errorText: "Неверная почта", value: store.getState().user.email},
+            { type: "text", id: "login", name: "login", label: "Логин", errorText: "Неверный логин", value: store.getState().user.login},
+            { type: "text", id: "first_name", name: "first_name", label: "Имя", errorText: "Неверное имя", value: store.getState().user.first_name},
+            { type: "text", id: "second_name", name: "second_name", label: "Фамилия", errorText: "Неверная фамилия", value: store.getState().user.second_name},
+            { type: "text", id: "display_name", name: "display_name", label: "Имя в Чате", errorText: "Неверная фамилия", value: store.getState().user.display_name},
+            { type: "phone", id: "phone", name: "phone", label: "Телефон", errorText: "Введите телефон", value: store.getState().user.phone},
+        ];
+
 
         this.children.form = new Form ({
             class: 'profile__form',
@@ -35,63 +49,60 @@ export class ProfilePage extends Block {
             buttonClass: 'profile__button',
         });
 
-        this.children.formChangeLogin = new Form ({
-            class: 'profile__form',
-            inputs: changePasswordInputs,
-            buttonText: 'Сохранить',
-            buttonClass: 'profile__button',
-        });
-
-        this.children.changeProfile = new LinkItem ({
+        this.children.changeProfile = new Link({
             class: 'profile__link',
-            linkText: 'Изменить данные',
+            label: 'Изменить данные',
             events: {
-                click: ()=> this.onChangeProfile(),
+                click: ()=> Router.go('/profileEdit'),
             },
         });
 
-        this.children.changePassword = new LinkItem ({
+        this.children.changePassword = new Link({
             class: 'profile__link',
-            linkText: 'Изменить пароль',
+            label: 'Изменить пароль',
             events: {
-                click: ()=> this.onChangePassword(),
+                click: ()=> Router.go('/pswEditPage'),
             },
         });
 
-        this.children.exitProfile = new LinkItem ({
+        this.children.exitProfile = new Link({
             class: 'profile__exit',
-            linkText: 'Выйти',
+            label: 'Выйти',
             events: {
-                click: ()=> this.onExitProfile(),
+                click: ()=> AuthController.logout(),
             },
         });
 
-        this.children.formChangeLogin.hide();
-        (this.children.form as Form).hideButton();
+        this.children.avatarEditor = new AvatarEditor({
+            changeAvatar: () => this.changeAvatar()
+        });
+
+        this.children.overlay = new Overlay({
+            events: {
+                click: () => this.hideAvatarEditor()
+            },
+        });
+
+        this.hideAvatarEditor();
     }
 
-    onclick() {
-        console.log('change avatar')
-    }
+    showAvatarEditor() {
+        this.children.avatarEditor.show();
+        this.children.overlay.show();
+    }    
 
-    onChangeProfile() {
-        (this.children.form as Form).showButton();
-        
-        this.children.changeProfile.hide();
-        this.children.changePassword.hide();
-        this.children.exitProfile.hide();
+    hideAvatarEditor(){
+        this.children.avatarEditor.hide();
+        this.children.overlay.hide();
     }
-    onChangePassword() {
-        this.children.changeProfile.hide();
-        this.children.changePassword.hide();
-        this.children.exitProfile.hide();
-        this.children.form.hide();
-        this.children.formChangeLogin.show();
+    
+    changeAvatar(){
+        this.children.avatar.setProps({
+            src: store.getState().user.avatar,
+        });
+        this.hideAvatarEditor();
     }
   
-    onExitProfile() {
-        console.log('exit profile')
-    }
 
     render() {
         return this.compile(template, {

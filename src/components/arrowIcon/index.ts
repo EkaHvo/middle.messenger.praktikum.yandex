@@ -3,6 +3,9 @@ import template from './arrowIcon.hbs';
 
 interface ArrowIconProps {
     class?: string,
+    events?: {
+        click: () => void
+    }
 }
 
 export class ArrowIcon extends Block<ArrowIconProps> {

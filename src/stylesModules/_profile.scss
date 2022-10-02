@@ -12,6 +12,9 @@
         align-items: center;
         justify-content: center;
     }
+    &__back {
+        cursor: pointer;
+    }
     &__info {
         display: flex;
         align-items: center;
@@ -83,4 +86,40 @@
         border-top: none;
       }
     }
+}
+
+.editor {
+    position: fixed;
+    z-index: 20;
+    top: 50%;
+    left: calc(50% - 180px);
+    background-color: white;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
+    border-radius: 12px;
+    padding: 40px;
+    width: 360px;
+    box-sizing: border-box;
+    text-align: center;
+    &__title {        
+        margin-bottom: 30px;
+    }
+    &__label {
+        display: block;
+        margin-bottom: 30px;
+    }
+    &__input {
+       outline:0;
+       opacity:0;
+       pointer-events:none;
+       user-select:none
+    }
+}
+
+.overlay {
+    width: 100%;
+    top: 0;
+    height: 100vh;
+    background-color: #8080808c;
+    position: fixed;
+    z-index: 10;
 }

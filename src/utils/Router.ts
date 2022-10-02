@@ -1,5 +1,44 @@
-import Route from "./Route";
 import Block from "./Block";
+
+function renderDOM(query:string, block:Block) {
+  const root = document.querySelector(query);
+  if(root === null){
+    throw new Error(`rootnot found selector "${query}"`);
+  }
+
+  root.innerHTML = '';
+  
+  root.append(block.getContent()!);
+
+  return root;
+}
+
+const isEqual = (lhs:string, rhs:string) => {
+  return lhs === rhs;
+}
+
+class Route {
+  private _block:Block | null = null;
+
+  constructor(
+      private _pathname:string,
+      private readonly _blockClass: typeof Block,
+      private readonly _query:string) {
+  }
+  leave() {
+      this._block = null;
+  }
+  match(pathname:string) {
+      return isEqual(pathname, this._pathname);
+  }
+  render() {
+    if (!this._block) {
+        this._block = new this._blockClass({});
+        renderDOM(this._query, this._block);
+        return;
+    }
+  }
+}
 
 class Router {
 
@@ -35,12 +74,8 @@ class Router {
   private _onRoute(pathname:string) {
       const route = this.getRoute(pathname);
       if(!route){
-        //todo redirect 
-        // if(this.defaultBlock){
-        //   this.go('/404');
-        // }
-        
-        return
+        this.go('/page_404');
+        return;
       }
 
       if (this._currentRoute && this._currentRoute !== route) {

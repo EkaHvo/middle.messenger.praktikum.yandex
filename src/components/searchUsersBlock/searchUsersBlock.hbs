@@ -1,0 +1,9 @@
+<ul class="search__users">
+    {{#each users}}
+    <li class="search__user">
+        <span class="search__name">{{this.first_name}}</span>
+        <span class="search__second-name">{{this.second_name}}</span>
+        <span class="search__name">ID: {{this.id}}</span>
+    </li>
+    {{/each}}
+</ul>

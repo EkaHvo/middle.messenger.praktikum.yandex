@@ -1,0 +1,9 @@
+<ul class="messege-views">
+    {{#if isLoaded}}
+        {{#each chats}}
+            {{{this}}}
+        {{/each}}
+    {{else}}
+        Loading...
+    {{/if}}
+</ul>

@@ -1,6 +1,5 @@
 import Block from "../../utils/Block";
 import template from "./form.hbs";
-import validate from "../../utils/validate";
 import { Button } from "../../components/button";
 import { InputWrap } from "../../components/inputWrap";
 
@@ -9,6 +8,9 @@ interface FormProps {
     inputs: any;
     buttonText: string;
     buttonClass: string;
+    events: {
+        onSubmit: (data:any) => void,
+    },
 }
 
 export class Form extends Block<FormProps> {
@@ -21,7 +23,17 @@ export class Form extends Block<FormProps> {
             buttonClass: this.props.buttonClass,
             buttonText: this.props.buttonText,
             events: {
-                click: (e: Event) => this.onSubmit(e),
+                click: (e: Event) => {
+                    e.preventDefault();
+
+                    let formData:Record<string,string> = {};
+                    Object.values(this.children.inputsBlock)
+                    .forEach((input:InputWrap)=> {
+                        formData[input.getInputName()] = input.getInputValue()
+                    });
+
+                    this.props.events.onSubmit(formData);
+                },
             },
         });
 
@@ -51,16 +63,6 @@ export class Form extends Block<FormProps> {
 
     hideButton(): void {
         this.children.button.hide();
-    }
-
-    protected onSubmit(e: Event) {
-        e.preventDefault();
-
-        const data = Object
-        .values(this.children.inputsBlock)
-        .map((input:InputWrap)=> ([(input.getInputName()),(input.getInputValue())]))
-        console.log("formData: ", data)
-
     }
 
     render() {

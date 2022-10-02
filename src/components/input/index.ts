@@ -1,24 +1,19 @@
 import Block from "../../utils/Block";
 import template from './input.hbs';
+import {InputProps } from '../../interfaces/interfaces';
 
-interface InputProps {
-    events?: {
-        focus: () => void,
-        blur: (e:Event) => void,
-        change?: (e:Event) => void,
-    },
-    class?: string, 
-    type?: string, 
-    id?: string, 
-    name?: string, 
-    placeholder?: string,
-    readonly?: boolean,
-    value?: string,
-}
 
 export class Input extends Block<InputProps> {
     constructor(props:InputProps){
         super(props)
+    }
+
+    getValue(){
+        return (this.element as HTMLInputElement).value;
+    }
+
+    setValue(value:string){
+        return (this.element as HTMLInputElement).value = value;
     }
 
     render() {

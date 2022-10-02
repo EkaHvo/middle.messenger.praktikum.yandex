@@ -27,27 +27,28 @@ export default class HTTPTransport {
     public post<Response = void>(path:string, data?: unknown):Promise<Response> {
         return this.request<Response>(this.endpont + path, {
             method: METHODS.POST,
-            data,
+            data
         });
     };
 
     public put<Response = void>(path:string, data: unknown):Promise<Response> {
         return this.request<Response>(this.endpont + path, {
             method: METHODS.PUT,
-            data,
+            data
         });
     };
 
     public patch<Response = void>(path:string, data: unknown):Promise<Response> {
         return this.request<Response>(this.endpont + path, {
             method: METHODS.PATCH,
-            data,
+            data
         });
     };
 
-    public delete<Response>(path:string):Promise<Response> {
+    public delete<Response>(path:string, data: unknown):Promise<Response> {
         return this.request<Response>(this.endpont + path, {
-            method: METHODS.DELETE
+            method: METHODS.DELETE,
+            data
         });
     };
 
@@ -60,7 +61,11 @@ export default class HTTPTransport {
 
             xhr.onreadystatechange = () => {
                 if(xhr.readyState === XMLHttpRequest.DONE){
-                    resolve(xhr.response)
+                    if (xhr.status < 400) {
+                        resolve(xhr.response);
+                    } else {
+                        reject(xhr.response);
+                    }
                 }
             }
 
@@ -68,58 +73,19 @@ export default class HTTPTransport {
             xhr.onerror = () => reject({reason: 'network error'});
             xhr.ontimeout = () => reject({reason: 'timeout'});
 
-            xhr.setRequestHeader('Content-Type', 'application/json')
-
             xhr.withCredentials = true;
             xhr.responseType = 'json';
 
             if(method === METHODS.GET || !data) {
+                xhr.setRequestHeader('Content-Type', 'application/json');
                 xhr.send();
-            } else {
+            } else if(data instanceof FormData){
                 xhr.send(data);
+            } else {
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send(JSON.stringify(data));
             }
         })
     }
-
-    // post = (url:string, options: Options = {}) => {
-    //     return this.request(url, {...options, method: METHODS.POST}, options.timeout);
-    // };
-
-    // put = (url:string, options: Options = {}) => {
-    //     return this.request(url, {...options, method: METHODS.PUT}, options.timeout);
-    // };
-
-    // delete = (url:string, options: Options = {}) => { 
-    //     return this.request(url, {...options, method: METHODS.DELETE}, options.timeout);
-    // };
-
-    // request = (url:string, options: Options = {}, timeout = 5000) => {
-    //     const {headers = {}, method, data} = options;
-
-    //     return new Promise(function(resolve, reject) {
-    //         if (!method) {
-    //             reject('No method');
-    //             return;
-    //         }
-
-    //         const xhr = new XMLHttpRequest();
-    //         xhr.open(method,url);
-    //         Object.keys(headers).forEach(key => xhr.setRequestHeader(key, headers[key]));
-        
-    //         xhr.onload = function() {
-    //             resolve(xhr);
-    //         };
-    //         xhr.onabort = reject;
-    //         xhr.onerror = reject;
-    //         xhr.timeout = timeout;
-    //         xhr.ontimeout = reject;
-            
-    //         if (method === "GET" || !data) {
-    //             xhr.send();
-    //         } else {
-    //             xhr.send(data);
-    //         }
-    //     });
-    // };
-    
+   
 }

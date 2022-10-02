@@ -2,12 +2,15 @@ import Block from '../../utils/Block';
 import template from './login.hbs';
 import { InputWrap } from "../../components/inputWrap";
 import { Button } from "../../components/button";
-import { SigninData} from '../../api/Auth-api';
+import { SigninData } from '../../interfaces/interfaces';
+import { Link } from '../../components/linkItem';
 import AuthController from '../../controllers/AuthController';
+import Router from '../../utils/Router';
 
 export class LoginPage extends Block{
     
     protected init(): void {
+
         this.children.button = new Button({
             buttonClass: 'button__login',
             buttonText: 'Авторизоваться',
@@ -16,10 +19,19 @@ export class LoginPage extends Block{
             },
         });
 
+        this.children.link = new Link({
+            class: 'form__link',
+            label: 'Нет аккаунта?',
+            events: {
+                click: () => Router.go('/sign-up'),
+            },
+        });
+
         const inputs = [
             {type: "text",id: "login", name: "login", label: "Логин", value: '', errorText: "Неверный логин"},
             { type: "password", id: "password", name: "password", label: "Пароль", value: '', errorText: "Неверный пароль"},
         ];
+
 
         this.children.inputsBlock = inputs.map((input) => {
 
@@ -39,24 +51,28 @@ export class LoginPage extends Block{
     protected onSubmit(e: Event) {
         e.preventDefault();
 
+        let isError:Boolean = false;
+
         const values = Object
         .values(this.children.inputsBlock)
-        .map((input:InputWrap) => ([((input as InputWrap).getInputName()),((input as InputWrap).getInputValue())]));
+        .map((input:InputWrap) => {
+            if((input as InputWrap).isInputValueValid()){
+                isError = true;
+            }
+            return ([((input as InputWrap).getInputName()),((input as InputWrap).getInputValue())])
+        });
 
-        const data = Object.fromEntries(values) as SigninData;
+        if(!isError){
+            const data = Object.fromEntries(values);
+            AuthController.signin(data as SigninData);
+        }
 
-        console.log("formData: ", data)
-
-        AuthController.signin(data);
     }
 
     render() {
         return this.compile(template, {
-            class: 'login',
             title: 'Вход',
-            linkHref: '/signin.html',
-            linkText: 'Нет аккаунта?',
-            linkClass: 'form__link',
+            class: 'login',
             children: this.children,
         })
     }

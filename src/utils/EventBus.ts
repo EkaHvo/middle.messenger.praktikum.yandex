@@ -22,7 +22,7 @@ export class EventBus<E extends Record<string, string> = Record<string, string>,
 
     emit<Event extends MapInterface<E>>(event: Event, ...args: Args[Event]) {
         if(!this.listeners[event]){
-            throw new Error(`Нет события: ${event}`);
+            return;
         }
         this.listeners[event]!.forEach(listener => {
             listener(...args);

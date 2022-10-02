@@ -16,8 +16,9 @@ interface InputWrapProps {
     placeholder?: string,
     readonly?: boolean,
     value?: string,
-    label: string,
-    errorText: string,
+    label?: string,
+    errorText?: string,
+    class?: string,
 }
 
 export class InputWrap extends Block<InputWrapProps> {
@@ -25,7 +26,9 @@ export class InputWrap extends Block<InputWrapProps> {
         super(props)
     }
 
+
     protected init(): void {
+
         this.children.input = new Input ({
             type: this.props.type, 
             id: this.props.id, 
@@ -33,6 +36,7 @@ export class InputWrap extends Block<InputWrapProps> {
             placeholder: this.props.placeholder, 
             readonly: this.props.readonly,
             value: this.props.value,
+            class: this.props.class,
             events: {
                 focus: () => this.onFocus(),
                 blur: (e:Event) => this.onBlur(e),
@@ -49,18 +53,22 @@ export class InputWrap extends Block<InputWrapProps> {
         this.children.error = new ErrorInput ({
             errorText: this.props.errorText,
         })
-
         this.children.error.hide();
     }
 
-    getInputValue(){
+    public getInputValue(){
         let input:HTMLInputElement = (this.children.input.element as HTMLInputElement);
         return input.value;
     }
 
-    getInputName(){
+    public getInputName(){
         let input:HTMLInputElement = (this.children.input.element as HTMLInputElement);
         return input.name;
+    }
+
+    isInputValueValid(){
+        let isError:boolean = validate(this.getInputValue(), this.getInputName());
+        return isError;
     }
 
     protected onFocus():void {
@@ -94,6 +102,7 @@ export class InputWrap extends Block<InputWrapProps> {
 
     render() {
         return this.compile(template, {
+            error: this.props.errorText,
             children: this.children,
         })
     }
