@@ -1,7 +1,5 @@
 import Block from "../../utils/Block";
 import template from './pswEditPage.hbs';
-
-
 import {Avatar} from '../../components/avatar';
 import { Form } from '../../components/form';
 import { ArrowIcon } from "../../components/arrowIcon";

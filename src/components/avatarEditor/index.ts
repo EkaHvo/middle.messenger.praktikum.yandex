@@ -1,8 +1,8 @@
 import Block from "../../utils/Block";
 import template from './avatarEditor.hbs';
 import { Button } from "../button";
-import { Input } from "../Input";
-import { Link } from "../LinkItem";
+import { Input } from "../input";
+import { Link } from "../linkItem";
 import UserController from "../../controllers/UserController";
 
 export class AvatarEditor extends Block {
