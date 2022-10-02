@@ -13,7 +13,7 @@ import AuthController from "./controllers/AuthController";
 import { Avatar } from "./components/avatar";
 import { ArrowIcon } from "./components/arrowIcon";
 import { SearchIcon } from "./components/searchIcon";
-import { Messenger } from "./components/Messenger";
+import { Messenger } from "./components/messenger";
 import { FriendInfoTopLine } from "./components/friendInfoTopLine";
 import { ClipIcon } from "./components/clipIcon";
 import { DottesIcon } from "./components/dottesIcon";
