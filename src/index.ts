@@ -28,7 +28,7 @@ import { CrossIcon } from "./components/crossIcon";
 import { AddRemoveFriend } from "./components/addRemoveFriend";
 import { FriendChangeItem } from "./components/friendChangeItem";
 import { AddMessegeModal } from "./components/addMessegeModal";
-import { SearchUsersBlock } from "./components/SearchUsersBlock";
+import { SearchUsersBlock } from "./components/searchUsersBlock";
 import { ChatsList } from "./components/chatsList";
 import { Chat } from "./components/chat";
 import { Link} from "./components/linkItem";
