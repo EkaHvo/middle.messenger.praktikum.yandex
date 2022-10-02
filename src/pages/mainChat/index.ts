@@ -1,10 +1,10 @@
 import Block from "../../utils/Block";
 import template from './main_chat.hbs';
 import { Link } from '../../components/linkItem';
-import { Messenger } from '../../components/Messenger';
-import { Button } from '../../components/Button';
-import { SearchUserInput } from "../../components/SearchUserInput";
-import { SearchUsersBlock } from "../../components/SearchUsersBlock";
+import { Messenger } from '../../components/messenger';
+import { Button } from '../../components/button';
+import { SearchUserInput } from "../../components/searchUserInput";
+import { SearchUsersBlock } from "../../components/searchUsersBlock";
 import { ChatsList } from "../../components/chatsList";
 import Router from '../../utils/Router';
 import ChatController from "../../controllers/ChatController";

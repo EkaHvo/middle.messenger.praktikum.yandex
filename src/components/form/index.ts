@@ -8,7 +8,7 @@ interface FormProps {
     inputs: any;
     buttonText: string;
     buttonClass: string;
-    events: {
+    events?: {
         onSubmit: (data:any) => void,
     },
 }
@@ -32,7 +32,9 @@ export class Form extends Block<FormProps> {
                         formData[input.getInputName()] = input.getInputValue()
                     });
 
-                    this.props.events.onSubmit(formData);
+                    if(this.props.events){
+                        this.props.events.onSubmit(formData);
+                    }
                 },
             },
         });
