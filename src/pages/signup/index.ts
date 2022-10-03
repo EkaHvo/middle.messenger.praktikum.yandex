@@ -7,9 +7,7 @@ import AuthController  from '../../controllers/AuthController';
 import Router from '../../utils/Router';
 import { Link } from '../../components/linkItem';
 
-
 export class SignUnPage extends Block {
-
     protected init(): void {
 
         this.children.button = new Button({
