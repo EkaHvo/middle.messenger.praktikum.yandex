@@ -10,6 +10,9 @@ interface AvatarProps {
 }
 
 export class Avatar extends Block<AvatarProps> {
+    
+    static url:string = 'https://ya-praktikum.tech/api/v2/resources';
+
     constructor(props: AvatarProps) {
         super(props);
     }
@@ -17,7 +20,7 @@ export class Avatar extends Block<AvatarProps> {
     render() {
         return this.compile(template, {
             class: this.props.class,
-            src: this.props.src ? `https://ya-praktikum.tech/api/v2/resources${this.props.src}`: false,
+            src: this.props.src ? `${Avatar.url}${this.props.src}`: false,
             children: this.children,
         });
     }

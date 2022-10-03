@@ -4,8 +4,11 @@
     </aside>
     <div class="profile__info">
         {{{avatar}}}
-        {{{form}}}
-        {{{formChangeLogin}}}
+        <div class="profile__form">
+            {{#each inputsBlock}}
+                {{{ this }}}
+            {{/each}}
+        </div>
         {{{changeProfile}}}
         {{{changePassword}}}
         {{{exitProfile}}}

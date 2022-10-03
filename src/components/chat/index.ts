@@ -14,9 +14,7 @@ interface ChatProps extends ChatData{
 }
 
 export class ChatBase extends Block<ChatProps> {
-    constructor(props:ChatProps){
-        super(props)
-    }
+
     protected init(): void {
         this.children.avatarIcon = new Avatar ({
             src: this.props.avatar,
@@ -37,4 +35,3 @@ export class ChatBase extends Block<ChatProps> {
 export const withSelectedChat = withStore((state) => ({selectedChat: (state.chats || []).find(({id}) => id === state.selectChat)}))
 
 export const Chat = withSelectedChat(ChatBase);
-

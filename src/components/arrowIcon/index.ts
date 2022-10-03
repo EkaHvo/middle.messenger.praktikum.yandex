@@ -9,9 +9,6 @@ interface ArrowIconProps {
 }
 
 export class ArrowIcon extends Block<ArrowIconProps> {
-    constructor(props:ArrowIconProps){
-        super(props)
-    }
 
     render() {
         return this.compile(template, { 

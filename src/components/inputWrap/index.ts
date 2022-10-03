@@ -11,21 +11,17 @@ interface InputWrapProps {
         blur: (e:Event) => void,
     },
     type?: string, 
-    id?: string, 
+    id: string, 
     name?: string, 
     placeholder?: string,
     readonly?: boolean,
     value?: string,
-    label?: string,
+    label: string,
     errorText?: string,
     class?: string,
 }
 
 export class InputWrap extends Block<InputWrapProps> {
-    constructor(props: InputWrapProps){
-        super(props)
-    }
-
 
     protected init(): void {
 

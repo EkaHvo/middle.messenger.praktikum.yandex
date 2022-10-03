@@ -6,9 +6,6 @@ import { Link } from "../linkItem";
 import UserController from "../../controllers/UserController";
 
 export class AvatarEditor extends Block {
-    constructor(props:{}){
-        super(props)
-    }
 
     protected init(): void {
 

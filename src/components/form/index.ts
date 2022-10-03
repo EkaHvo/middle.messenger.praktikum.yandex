@@ -14,9 +14,6 @@ interface FormProps {
 }
 
 export class Form extends Block<FormProps> {
-    constructor(props: FormProps) {
-        super(props);
-    }
 
     protected init(): void {
         this.children.button = new Button({

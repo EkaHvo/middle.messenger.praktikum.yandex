@@ -2,19 +2,18 @@ import Block from '../../utils/Block';
 import template from './signin.hbs';
 import { InputWrap } from "../../components/inputWrap";
 import { Button } from "../../components/button";
-import { SignupData } from '../../interfaces/interfaces';
-import AuthController  from '../../controllers/AuthController';
-import Router from '../../utils/Router';
+import { SigninData } from '../../interfaces/interfaces';
 import { Link } from '../../components/linkItem';
+import AuthController from '../../controllers/AuthController';
+import Router from '../../utils/Router';
 
-
-export class SigninPage extends Block {
-
+export class SignInPage extends Block{
+    
     protected init(): void {
 
         this.children.button = new Button({
-            buttonClass: 'button__signin',
-            buttonText: 'Зарегистрироваться',
+            buttonClass: 'button__login',
+            buttonText: 'Авторизоваться',
             events: {
                 click: (e: Event) => this.onSubmit(e),
             },
@@ -22,21 +21,17 @@ export class SigninPage extends Block {
 
         this.children.link = new Link({
             class: 'form__link',
-            label: 'Войти',
+            label: 'Нет аккаунта?',
             events: {
-                click: () => Router.go('/'),
+                click: () => Router.go('/sign-up'),
             },
         });
 
         const inputs = [
-                { type: "email", id: "email", name: "email", label: "Почта", errorText: "Неверная почта"},
-                { type: "text", id: "login", name: "login", label: "Логин", errorText: "Неверный логин"},
-                { type: "text", id: "first_name", name: "first_name", label: "Имя", errorText: "Неверное имя"},
-                { type: "text", id: "second_name", name: "second_name", label: "Фамилия", errorText: "Неверная фамилия"},
-                { type: "phone", id: "phone", name: "phone", label: "Телефон", errorText: "Введите телефон"},
-                { type: "password", id: "password", name: "password", label: "Пароль", errorText: "Неверный пароль"},
-                { type: "password", id: "password", name: "password", label: "Пароль (ещё раз)", errorText: "Пароли не совпадают"},
+            {type: "text",id: "login", name: "login", label: "Логин", value: '', errorText: "Неверный логин"},
+            { type: "password", id: "password", name: "password", label: "Пароль", value: '', errorText: "Неверный пароль"},
         ];
+
 
         this.children.inputsBlock = inputs.map((input) => {
 
@@ -45,6 +40,7 @@ export class SigninPage extends Block {
                 id: input.id,
                 name: input.name,
                 label: input.label,
+                value: input.value,
                 errorText: input.errorText,
             });
 
@@ -68,14 +64,15 @@ export class SigninPage extends Block {
 
         if(!isError){
             const data = Object.fromEntries(values);
-            AuthController.signin(data as SignupData);
+            AuthController.signin(data as SigninData);
         }
+
     }
-    
+
     render() {
         return this.compile(template, {
-            class: 'signin',
-            title: 'Регистрация',
+            title: 'Вход',
+            class: 'login',
             children: this.children,
         })
     }

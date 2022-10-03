@@ -11,7 +11,6 @@ const INPUTREGEXP:Record<string, string> = {
   email: '^([-a-zA-Z0-9\.])+\@([-a-zA-Z0-9]){1,}\.([A-Za-z]{2,4})$',
 }
 
-
 export default function validate(value: string, name: string): boolean {
   let reg = new RegExp(INPUTREGEXP[name], "g");
   return !reg.test(value);

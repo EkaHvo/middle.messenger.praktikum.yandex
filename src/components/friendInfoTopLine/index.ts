@@ -3,22 +3,9 @@ import template from './friendInfoTopLine.hbs';
 import  { DottesIcon } from '../dottesIcon';
 import  { AddRemoveFriend } from '../addRemoveFriend';
 import ChatController from "../../controllers/ChatController";
-import { User } from "../../interfaces/interfaces";
 
-
-interface FriendInfoTopLineProps {
-    selectedChat: number | undefined;
-    selectedChatUsers: User[] | [];
-    userId: number,
-}
-
-export class FriendInfoTopLine extends Block<FriendInfoTopLineProps> {
-    constructor(props:FriendInfoTopLineProps){
-        super(props)
-    }
-
+export class FriendInfoTopLine extends Block {
     protected init(): void {
-
         this.children.dottesIcon = new DottesIcon ({
             class: '',
             events: {

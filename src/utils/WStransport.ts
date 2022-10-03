@@ -68,5 +68,3 @@ export default class WSTransport extends EventBus{
       })
     }
 }
-
-

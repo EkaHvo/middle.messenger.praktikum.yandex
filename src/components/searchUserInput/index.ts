@@ -5,9 +5,6 @@ import { Input } from "../input";
 
 
 export class SearchUserInput extends Block<InputProps> {
-    constructor(props:InputProps){
-        super(props)
-    }
 
     protected init(): void {
         this.children.input = new Input({

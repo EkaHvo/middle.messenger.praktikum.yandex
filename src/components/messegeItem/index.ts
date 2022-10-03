@@ -10,9 +10,6 @@ interface MessegeItemProps extends Messege{
 }
 
 export class MessegeItem extends Block<MessegeItemProps> {
-  constructor(props:MessegeItemProps){
-      super(props);
-  }
   
   render() {
     return this.compile(template, { 

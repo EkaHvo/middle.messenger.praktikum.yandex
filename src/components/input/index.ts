@@ -4,9 +4,6 @@ import {InputProps } from '../../interfaces/interfaces';
 
 
 export class Input extends Block<InputProps> {
-    constructor(props:InputProps){
-        super(props)
-    }
 
     getValue(){
         return (this.element as HTMLInputElement).value;

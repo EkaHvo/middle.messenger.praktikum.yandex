@@ -6,9 +6,6 @@ interface SearchUsersProps{
 }
 
 export class SearchUsersBlock extends Block<SearchUsersProps> {
-    constructor(props:SearchUsersProps){
-        super(props)
-    }
 
     protected render():DocumentFragment {
         return this.compile(template, {

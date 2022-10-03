@@ -19,9 +19,6 @@ interface MessengerProps {
 }
 
 class MessengerBase extends Block<MessengerProps> {
-    constructor(props: MessengerProps){
-        super(props)
-    }
     
     protected init(): void {
 

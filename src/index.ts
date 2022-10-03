@@ -1,6 +1,6 @@
 import { MainChatPage } from "./pages/mainChat";
-import { LoginPage } from "./pages/login";
-import { SigninPage } from "./pages/signin";
+import { SignInPage } from "./pages/signin";
+import { SignUnPage } from "./pages/signup";
 import { ProfilePage } from "./pages/profile";
 import { PswEditPage } from "./pages/pswEditPage";
 import { ProfileEdit } from "./pages/profileEdit";
@@ -62,8 +62,8 @@ registerComponent('Form', Form as any);
 window.addEventListener("DOMContentLoaded", async() => {
 
     Router
-    .use('/', LoginPage)
-    .use('/sign-up', SigninPage)
+    .use('/', SignInPage)
+    .use('/sign-up', SignUnPage)
     .use('/messenger', MainChatPage)
     .use('/page_404', PageError404)
     .use('/page_500', PageError500)
