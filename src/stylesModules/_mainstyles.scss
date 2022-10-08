@@ -36,6 +36,13 @@ ul {
             transform: rotate(45deg);
         }
     }
+    &__addchat {
+        margin: 20px auto;
+    }
+    &__removechat {
+        margin: 20px auto;
+        background: var(--main-red);
+    }
 }
 .link {
     width: 100%;

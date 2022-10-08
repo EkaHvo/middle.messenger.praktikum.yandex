@@ -1,6 +1,5 @@
 import Block from "../../utils/Block";
 import template from "./form.hbs";
-import validate from "../../utils/validate";
 import { Button } from "../../components/button";
 import { InputWrap } from "../../components/inputWrap";
 
@@ -9,19 +8,31 @@ interface FormProps {
     inputs: any;
     buttonText: string;
     buttonClass: string;
+    events?: {
+        onSubmit: (data:any) => void,
+    },
 }
 
 export class Form extends Block<FormProps> {
-    constructor(props: FormProps) {
-        super(props);
-    }
 
     protected init(): void {
         this.children.button = new Button({
             buttonClass: this.props.buttonClass,
             buttonText: this.props.buttonText,
             events: {
-                click: (e: Event) => this.onClick(e),
+                click: (e: Event) => {
+                    e.preventDefault();
+
+                    let formData:Record<string,string> = {};
+                    Object.values(this.children.inputsBlock)
+                    .forEach((input:InputWrap)=> {
+                        formData[input.getInputName()] = input.getInputValue()
+                    });
+
+                    if(this.props.events){
+                        this.props.events.onSubmit(formData);
+                    }
+                },
             },
         });
 
@@ -51,30 +62,6 @@ export class Form extends Block<FormProps> {
 
     hideButton(): void {
         this.children.button.hide();
-    }
-
-    protected onClick(e: Event) {
-        e.preventDefault();
-
-        const inputs = this.children.inputsBlock;
-
-        let formData: Record<string, string> = {};
-        let isFormError: boolean = false;
-
-        if (inputs && Array.isArray(inputs)) {
-            inputs.forEach((element: InputWrap) => {
-                const value = element.getInputValue();
-                const name = element.getInputName();
-
-                const isError: boolean = validate(value, name);
-                isError ? (isFormError = true) : "";
-
-                formData[name] = value;
-            });
-        }
-
-        console.log("isFormError: ", isFormError);
-        console.log("formData: ", formData);
     }
 
     render() {

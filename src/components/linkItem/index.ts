@@ -1,23 +1,17 @@
 import Block from "../../utils/Block";
 import template from './linkItem.hbs';
 
-interface LinkItemProps {
-    class?: string,
-    linkText?: string,
-    events: {
-        click: () => void,
-    }
+interface LinkProps{
+    label: String,
+    class?: String,
+    events?: {
+        click?: () => void,
+    };
 }
 
-export class LinkItem extends Block<LinkItemProps> {
-    constructor(props:{}){
-        super(props)
-    }
+export class Link extends Block<LinkProps> {
 
     render() {
-        return this.compile(template, { 
-            class: this.props.class,
-            linkText: this.props.linkText,
-        })
+        return this.compile(template, {...this.props})
     }
 }

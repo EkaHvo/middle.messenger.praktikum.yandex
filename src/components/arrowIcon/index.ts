@@ -3,12 +3,12 @@ import template from './arrowIcon.hbs';
 
 interface ArrowIconProps {
     class?: string,
+    events?: {
+        click: () => void
+    }
 }
 
 export class ArrowIcon extends Block<ArrowIconProps> {
-    constructor(props:ArrowIconProps){
-        super(props)
-    }
 
     render() {
         return this.compile(template, { 

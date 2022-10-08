@@ -6,9 +6,6 @@ interface CrossIconProps {
 }
 
 export class CrossIcon extends Block<CrossIconProps> {
-    constructor(props:CrossIconProps){
-        super(props)
-    }
 
     render() {
         return this.compile(template, { 

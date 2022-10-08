@@ -2,12 +2,10 @@ import Block from "../../utils/Block";
 import template from './friendInfoTopLine.hbs';
 import  { DottesIcon } from '../dottesIcon';
 import  { AddRemoveFriend } from '../addRemoveFriend';
-
+import ChatController from "../../controllers/ChatController";
 
 export class FriendInfoTopLine extends Block {
-
     protected init(): void {
-
         this.children.dottesIcon = new DottesIcon ({
             class: '',
             events: {
@@ -19,10 +17,33 @@ export class FriendInfoTopLine extends Block {
             modalItems: [
                 {
                     text: 'Добавить пользователя',
+                    events: {
+                        click: () => {
+                            let addedUserId:string|null = prompt('Введите id пользователя для его добавления', '');
+                            if(addedUserId){
+                                ChatController.addChatUser({
+                                    chatId: this.props.selectedChat!,
+                                    users: [+addedUserId]
+                                })
+                            }
+                        }
+                        
+                    },
                 },
                 {
                     class: 'button__cross_rotate',
                     text: 'Удалить пользователя',
+                    events: {
+                        click: () => {
+                            let removedUserId:string|null = prompt('Введите id пользователя для его удаления', '')
+                            if(removedUserId){
+                                ChatController.removeChatUser({
+                                    chatId: this.props.selectedChat!,
+                                    users: [+removedUserId]
+                                })
+                            }
+                        },
+                    },
                 },
             ]
         });
@@ -43,6 +64,8 @@ export class FriendInfoTopLine extends Block {
 
     render() {
         return this.compile(template, {
+            selectedChatUsers: this.props.selectedChatUsers,
+            userId: this.props.userId,
             children: this.children,
         })
     }

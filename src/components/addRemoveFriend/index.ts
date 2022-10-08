@@ -7,9 +7,6 @@ interface AddRemoveFriendProps {
 }
 
 export class AddRemoveFriend extends Block<AddRemoveFriendProps> {
-    constructor(props:AddRemoveFriendProps){
-        super(props)
-    }
 
     protected init(): void {
         const { modalItems } = this.props;

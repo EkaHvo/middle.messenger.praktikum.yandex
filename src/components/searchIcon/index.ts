@@ -2,10 +2,7 @@ import Block from "../../utils/Block";
 import template from './searchIcon.hbs';
 
 
-export class SearchIcon extends Block<Record<string, string>> {
-    constructor(props:{}){
-        super(props)
-    }
+export class SearchIcon extends Block {
 
     render() {
         return this.compile(template, { 

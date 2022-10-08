@@ -1,8 +1,11 @@
 <div class="friend">
-    <div class="friend__wrap">
-        {{{Avatar}}}
-        <div class="name friend__name">Иван</div>
-    </div>
+    {{#each selectedChatUsers}}
+        <div class="friend__wrap">
+            {{{Avatar}}}
+            <div class="name friend__name">{{ this.first_name }}</div>
+            <div class="name friend__name">{{ this.second_name }}</div>
+        </div>
+    {{/each}}
     {{{dottesIcon}}}
     {{{addRemoveFriend}}}
 </div>

@@ -3,9 +3,6 @@ import template from './inputLabel.hbs';
 
 
 export class InputLabel extends Block<Record<string, string|boolean>> {
-    constructor(props:{}){
-        super(props)
-    }
 
     render() {
         return this.compile(template, { 

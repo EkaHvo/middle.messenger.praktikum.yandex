@@ -1,0 +1,18 @@
+<div class="chat__area">
+    {{#if selectedChat}}
+        {{{ friendInfoTopLine }}}
+        <div class="messeges">
+            {{#each messeges}}
+                {{{this}}}
+            {{/each}}
+        </div>
+        <div class="add-messege">
+            {{{clipIcon}}}
+            {{{input}}}
+            {{{button}}}
+            {{{addMessegeModal}}}
+        </div>
+    {{else}}
+        <span class="chat__empty">Выберите чат чтобы отправить сообщение</span>
+    {{/if}}
+</div>

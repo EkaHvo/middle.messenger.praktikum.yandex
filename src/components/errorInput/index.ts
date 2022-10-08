@@ -6,9 +6,6 @@ interface ErrorInputProps {
 }
 
 export class ErrorInput extends Block<ErrorInputProps> {
-    constructor(props:ErrorInputProps){
-        super(props)
-    }
 
     render() {
         return this.compile(template, {
