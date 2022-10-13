@@ -6,6 +6,7 @@ import { PswEditPage } from "./pages/pswEditPage";
 import { ProfileEdit } from "./pages/profileEdit";
 import { PageError500 } from "./pages/500";
 import { PageError404 } from "./pages/404";
+import './styles.scss';
 
 import Router from "./utils/Router";
 import AuthController from "./controllers/AuthController";

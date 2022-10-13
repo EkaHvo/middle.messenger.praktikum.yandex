@@ -1,7 +1,6 @@
-// Generated using webpack-cli https://github.com/webpack/webpack-cli
-
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const isProduction = process.env.NODE_ENV == 'production';
 
@@ -9,6 +8,12 @@ const config = {
     entry: './src/index.ts',
     output: {
         path: path.resolve(__dirname, 'dist'),
+    },
+    resolve: {
+        extensions: ['.ts', '.js'],
+        alias: {
+            handlebars: 'handlebars/dist/handlebars.min.js'
+        }
     },
     devServer: {
         host: 'localhost',
@@ -20,23 +25,26 @@ const config = {
         new HtmlWebpackPlugin({
             template: 'src/index.html',
         }),
+        new MiniCssExtractPlugin({
+            filename: '[name].[contenthash].css',
+        }),
     ],
     module: {
         rules: [
             {
-                test: /\.(ts|tsx)$/i,
+                test: /\.ts$/i,
                 use: {
                     loader: 'ts-loader',
                     options: {
                         transpileOnly: true     
                     }
                 },
-                exclude: ['/node_modules/'],
+                exclude: '/node_modules/',
             },
             {
                 test: /\.s[ac]ss$/i,
                 use: [
-                    'style-loader',
+                    MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader', 
                         options: {
@@ -54,15 +62,10 @@ const config = {
             {
                 test: /\.hbs/,
                 loader: "handlebars-loader",
-              },
+                exclude: '/node_modules/'
+            }
         ],
-    },
-    resolve: {
-        extensions: ['.ts', '.js'],
-        alias: {
-            handlebars: 'handlebars/dist/handlebars.min.js'
-        }
-    },
+    }
 };
 
 module.exports = () => {
