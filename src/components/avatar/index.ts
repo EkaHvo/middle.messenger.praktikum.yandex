@@ -1,5 +1,6 @@
 import Block from "../../utils/Block";
 import template from "./avatar.hbs";
+import { NoPhotoIcon } from "../noPhotoIcon";
 
 interface AvatarProps {
     class?: string;
@@ -15,6 +16,10 @@ export class Avatar extends Block<AvatarProps> {
 
     constructor(props: AvatarProps) {
         super(props);
+    }
+
+    protected init(): void {
+        this.children.noPhotoIcon = new NoPhotoIcon({});
     }
 
     render() {
