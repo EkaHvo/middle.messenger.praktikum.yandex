@@ -22,10 +22,10 @@ export class AuthAPI extends BaseAPI {
     return this.http.get('/user')
   }
 
-  read = undefined;
-  create = undefined;
-  update = undefined;
-  delete = undefined;
+  read:any = undefined;
+  create:any = undefined;
+  update:any = undefined;
+  delete:any = undefined;
 }
 
 export default new AuthAPI();

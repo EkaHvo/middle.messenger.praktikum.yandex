@@ -36,7 +36,7 @@ export class ChatAPI extends BaseAPI {
         return response.token;
     }
 
-    update = undefined;
+    update:any = undefined;
 }
 
 export default new ChatAPI();

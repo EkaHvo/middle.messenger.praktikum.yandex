@@ -1,5 +1,9 @@
 import Block from "./Block";
 
+export interface BlockConstructable<P = any>{
+  new(props: P): Block<P>;
+}
+
 function renderDOM(query:string, block:Block) {
   const root = document.querySelector(query);
   if(root === null){
@@ -18,23 +22,23 @@ const isEqual = (lhs:string, rhs:string) => {
 }
 
 class Route {
-  private _block:Block | null = null;
+  private block:Block | null = null;
 
   constructor(
-      private _pathname:string,
-      private readonly _blockClass: typeof Block,
-      private readonly _query:string) {
+      private pathname:string,
+      private readonly blockClass: BlockConstructable,
+      private readonly query:string) {
   }
   leave() {
-      this._block = null;
+      this.block = null;
   }
   match(pathname:string) {
-      return isEqual(pathname, this._pathname);
+      return isEqual(pathname, this.pathname);
   }
   render() {
-    if (!this._block) {
-        this._block = new this._blockClass({});
-        renderDOM(this._query, this._block);
+    if (!this.block) {
+        this.block = new this.blockClass({});
+        renderDOM(this.query, this.block);
         return;
     }
   }
@@ -44,10 +48,10 @@ class Router {
 
   private static __instance: Router;
   private routes: Route[] = [];
-  private _currentRoute: Route | null = null;
+  private currentRoute: Route | null = null;
   private history:History = window.history;
 
-  constructor(private readonly _rootQuery: string) {
+  constructor(private readonly rootQuery: string) {
       if (Router.__instance) {
           return Router.__instance;
       }
@@ -56,8 +60,8 @@ class Router {
       Router.__instance = this;
   }
 
-  public use(pathname:string, block: typeof Block) {
-      const route = new Route(pathname, block, this._rootQuery);
+  public use(pathname:string, block: BlockConstructable) {
+      const route = new Route(pathname, block, this.rootQuery);
       this.routes.push(route);
       return this;
   } 
@@ -78,11 +82,11 @@ class Router {
         return;
       }
 
-      if (this._currentRoute && this._currentRoute !== route) {
-          this._currentRoute.leave();
+      if (this.currentRoute && this.currentRoute !== route) {
+          this.currentRoute.leave();
       }
 
-      this._currentRoute = route;
+      this.currentRoute = route;
       route.render();
   }
 

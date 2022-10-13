@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["ES2020", "DOM"],
+    "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "sourceMap": true,
-    "strictNullChecks": true       
-  }
+    "module": "es6",
+    "target": "es5",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+  },
+  "include": ["typing"],
+  "files": ["src/index.ts"]
 }
