@@ -4,6 +4,8 @@ WORKDIR /var/www/app
 
 COPY package*.json ./
 
+RUN npm pkg delete scripts.prepare
+
 RUN npm install
 
 COPY . .
@@ -15,6 +17,8 @@ FROM node:16-alpine AS production
 WORKDIR /var/www/production
 
 COPY --from=builder /var/www/app/package.json /var/www/app/package-lock.json ./
+
+RUN npm pkg delete scripts.prepare
 
 RUN npm install --omit=dev
 
