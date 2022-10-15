@@ -9,7 +9,8 @@
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
-    "serve": "webpack serve"
+    "serve": "webpack serve",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -32,6 +33,7 @@
     "handlebars": "4.7.7",
     "handlebars-loader": "1.7.2",
     "html-webpack-plugin": "5.5.0",
+    "husky": "8.0.1",
     "jsdom": "20.0.1",
     "mini-css-extract-plugin": "2.6.1",
     "mocha": "10.0.0",
