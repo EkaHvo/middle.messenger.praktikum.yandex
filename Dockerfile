@@ -4,8 +4,6 @@ WORKDIR /var/www/app
 
 COPY package*.json ./
 
-RUN npm pkg delete scripts.prepare
-
 RUN npm install
 
 COPY . .

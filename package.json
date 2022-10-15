@@ -12,6 +12,11 @@
     "serve": "webpack serve",
     "prepare": "husky install"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm-run-all test lint"
+    }
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
