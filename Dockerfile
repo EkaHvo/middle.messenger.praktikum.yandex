@@ -2,9 +2,9 @@ FROM node:16-alpine AS builder
 
 WORKDIR /var/www/app
 
-COPY package*.json ./
-
 RUN npm pkg delete scripts.prepare
+
+COPY package*.json ./
 
 RUN npm install
 
