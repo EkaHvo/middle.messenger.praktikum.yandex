@@ -20,8 +20,6 @@ describe('button', () => {
         expect(element).to.be.instanceOf(window.HTMLButtonElement)
     });
 
-
-        
     it('should action on click', () => {
         const clickFunctionFake = sinon.fake();
 

@@ -8,6 +8,6 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
   },
-  "include": ["typing"],
+  "include": ["src/typing"],
   "files": ["src/index.ts"]
 }
