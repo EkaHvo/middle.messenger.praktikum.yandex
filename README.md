@@ -6,7 +6,7 @@
 [Макеты с примером дизайна от Яндекс.Практикума](https://www.figma.com/file/0lMDkxumJ6uu5QhYNljawS/Chat_external_link-(Copy)?node-id=0%3A1)
 
 ## Cсылка на деплой: 
-[Деплой на Netlify](https://celebrated-selkie-c50da2.netlify.app/)
+[Деплой на Heroku](https://practicum-chat-app.herokuapp.com/)
 
 ## Установка:
 - `npm install` — установка стабильной версии,
@@ -33,9 +33,10 @@
 
 ## Использованы инструменты:
 - шаблонизатор Handlebars;
-- сборщик Parsel;
+- сборщик Parsel, webpack
 - препроцессор SASS;
 - реализован аналог Fetch (с помощью XHR);
 - реализован базовый класс Block(View в MVC);
 - ESLint и Stylelint;
 - страницы и кмпоненты на TypeScript;
+- настроена Docker-сборка статического приложения;

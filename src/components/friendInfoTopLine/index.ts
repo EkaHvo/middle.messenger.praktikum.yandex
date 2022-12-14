@@ -2,10 +2,29 @@ import Block from "../../utils/Block";
 import template from './friendInfoTopLine.hbs';
 import  { DottesIcon } from '../dottesIcon';
 import  { AddRemoveFriend } from '../addRemoveFriend';
+import  { FriendWrap } from '../friendWrap';
 import ChatController from "../../controllers/ChatController";
 
 export class FriendInfoTopLine extends Block {
     protected init(): void {
+
+        const friends = this.props.selectedChatUsers;
+
+        if (friends && Array.isArray(friends)) {
+            
+            this.children.friendWrapsBlock = friends.map((friend) => {
+
+                const friendWrap:FriendWrap = new FriendWrap({
+                    src: friend.avatar,
+                    first_name: friend.first_name,
+                    second_name: friend.second_name,
+                });
+
+                return friendWrap
+            });
+        }
+
+
         this.children.dottesIcon = new DottesIcon ({
             class: '',
             events: {
@@ -64,7 +83,6 @@ export class FriendInfoTopLine extends Block {
 
     render() {
         return this.compile(template, {
-            selectedChatUsers: this.props.selectedChatUsers,
             userId: this.props.userId,
             children: this.children,
         })

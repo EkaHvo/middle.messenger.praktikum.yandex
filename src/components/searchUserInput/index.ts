@@ -2,6 +2,7 @@ import Block from "../../utils/Block";
 import template from './searchUserInput.hbs';
 import { InputProps } from '../../interfaces/interfaces';
 import { Input } from "../input";
+import { SearchIcon } from "../searchIcon";
 
 
 export class SearchUserInput extends Block<InputProps> {
@@ -14,6 +15,7 @@ export class SearchUserInput extends Block<InputProps> {
             id: "search__input",
             events: this.props.events
         });
+        this.children.searchIcon = new SearchIcon({});
     }
 
     render() {
